@@ -6,8 +6,6 @@ const Contactus = () => {
   return (
     <div>
       <div>Contact us page!!!</div>
-      <Button className="text-gray-900">Add</Button>
-      <Avatar></Avatar>
     </div>
   );
 };
