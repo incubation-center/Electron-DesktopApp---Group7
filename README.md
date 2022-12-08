@@ -1,4 +1,7 @@
 # Electron-DesktopApp---Group7
+### SMS_API REPO
+https://github.com/mengtongun/sms-api
+
 
 For this project w4e use tech stack by combination of Electron, React, Tailwind, and Vite in a single project as only fronend 👍
 <br>-> after clone this project you need to type
