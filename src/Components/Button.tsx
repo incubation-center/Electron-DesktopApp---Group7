@@ -5,9 +5,9 @@ const Button = ({
     children = ''
 }) => {
   return (
-    <div className={`bg-gray-400 ${className}`} >
+    <button className={`bg-gray-400 ${className}`} >
       {children}
-    </div>
+    </button>
   )
 }
 
