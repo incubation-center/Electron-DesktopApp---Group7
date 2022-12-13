@@ -2,7 +2,7 @@ import React from 'react'
 
 const Sattandance = () => {
   return (
-    <div>Sattandance</div>
+    <div>S attandance</div>
   )
 }
 
