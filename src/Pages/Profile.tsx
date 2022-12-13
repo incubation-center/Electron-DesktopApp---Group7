@@ -3,7 +3,7 @@ import Button from "@/Components/Button";
 
 const Profile = () => {
   return (
-    <div>
+    <div className="flex justify-center w-screen">
       <div className="flex justify-around items-center ml-20 mr-20 mt-20 pl-20">
         <div className="mr-20">
           <Avatar />

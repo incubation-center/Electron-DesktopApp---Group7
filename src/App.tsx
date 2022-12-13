@@ -2,16 +2,18 @@ import { Route, Routes } from "react-router-dom";
 import Contactus from "./Pages/Contactus";
 import Home from "./Pages/Home";
 import Navbar from "./Pages/Navbar";
-import Fattendance from "./Pages/Faculty/Fattendance";
 import Generatereport from "./Pages/Faculty/Generatereport";
-import Studentattendance from "./Pages/Faculty/Studentattendance";
+import Studentattendance from "./Pages/Faculty/Ftudentattendance";
 import Studentmarks from "./Pages/Faculty/Studentmarks";
 import Exam from "./Pages/Student/Exam";
 import Riseissue from "./Pages/Student/Riseissue";
 import Sattandance from "./Pages/Student/Sattandance";
 import Profile from "./Pages/Profile";
-import Stimetable from "./Pages/Student/Stimetable";
+import Stimetable from "./Pages/Stimetable";
 import Menubar from "./Components/Menubar";
+import Attandance from "./Pages/Faculty/Attandance";
+import Login from "./Pages/Login";
+import Signup from "./Pages/Signup";
 
 const App: React.FC = () => {
   return (
@@ -21,8 +23,8 @@ const App: React.FC = () => {
         <Routes>
         <Route path="/" element={<Home />} />
           <Route path="/contacus" element={<Contactus />} />
-          <Route path="/f-attendance" element={<Fattendance />} />
           <Route path="/generatereport" element={<Generatereport />} />
+          <Route path="/attendancestudent" element={<Attandance />} />
           <Route path="/studentattendace" element={<Studentattendance />} />
           <Route path="/studentmarks" element={<Studentmarks />} />
           <Route path="/exam" element={<Exam />} />
@@ -30,6 +32,8 @@ const App: React.FC = () => {
           <Route path="/s-attendace" element={<Sattandance />} />
           <Route path="/s-timetable" element={<Stimetable />} />
           <Route path="/riseissue" element={<Riseissue />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/signup" element={<Signup />} />
         </Routes>
       </Menubar>
     </div>

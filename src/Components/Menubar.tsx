@@ -6,10 +6,11 @@ const Facultymenu: FunctionComponent<PropsWithChildren> = ({ children }) => {
     { title: "Profile", src: "Profile", path: "/s-profile" },
     { title: "Exam", src: "Exam", path: "/exam" },
     { title: "Time Table ", src: "Timetable", path: "/s-timetable" },
-    { title: "Attendance", src: "Attendance", path: "/s-attendace" },
+    { title: "SAttendance ", src: "Attendance", path: "/s-attendace" },
+    { title: "Attendance", src: "Attendance", path: "/attendancestudent" },
     { title: "Rise Issue", src: "Riseissue", path: "/riseissue" },
     {
-      title: "Student Attendence",
+      title: "FAttendence",
       src: "Studentattendance",
       path: "/studentattendace",
     },
@@ -26,7 +27,7 @@ const Facultymenu: FunctionComponent<PropsWithChildren> = ({ children }) => {
     <div className="flex">
       <div
         className={`${
-          open ? "w-72" : "w-20 "
+          open ? "w-80" : "w-20 "
         } bg-blue-300 h-screen p-5  pt-8 relative duration-300`}
       >
         <img
@@ -59,10 +60,7 @@ const Facultymenu: FunctionComponent<PropsWithChildren> = ({ children }) => {
               className={`link flex rounded-md p-2 cursor-pointer hover:bg-light-white text-gray-500 text-sm items-center gap-x-4  
            ${index === 0 && "bg-light-white"}`}
             >
-              <a>
                 <img src={`./src/assets/${Menu.src}.png`} />
-              </a>
-
               <span
                 className={`${
                   !open && "hidden"
@@ -74,9 +72,7 @@ const Facultymenu: FunctionComponent<PropsWithChildren> = ({ children }) => {
           ))}
         </ul>
       </div>
-      <div>
-        <div>{children}</div>
-      </div>
+      {children}
     </div>
   );
 };

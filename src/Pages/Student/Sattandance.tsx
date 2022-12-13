@@ -1,8 +1,8 @@
-import React from 'react'
+
 
 const Sattandance = () => {
   return (
-    <div>S attandance</div>
+    <div>S attandance for student view !!!</div>
   )
 }
 

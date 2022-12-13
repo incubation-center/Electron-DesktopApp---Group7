@@ -2,7 +2,7 @@ import React from 'react'
 
 const Studentmarks = () => {
   return (
-    <div>Student marks</div>
+    <div className='flex items-center justify-center w-screen'>Student marks</div>
   )
 }
 

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 
 const Navbar = () => {
   const [navbar, setNavbar] = useState(false);

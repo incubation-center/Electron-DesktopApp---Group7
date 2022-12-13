@@ -18,12 +18,18 @@ const Home = () => {
           <p className="mt-3 font-normal text-black-800">
             Please Sign up {" "}
               <a
-                href="#"
+                href="/login"
                 className="font-medium text-blue-600 underline dark:text-blue-500 hover:no-underline"
               >
                 login
               </a>{" "}
               that we have we already provide you and the roadmap as well.
+              <a
+                href="/signup"
+                className="font-medium text-blue-600 underline dark:text-blue-500 hover:no-underline"
+              >
+                Sign Up
+              </a>
           </p>
         </div>
       </div>

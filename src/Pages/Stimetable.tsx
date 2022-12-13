@@ -6,7 +6,6 @@ const Stimetable = () => {
     <div className='p-5'>
       Stimetable
       <Button>App</Button>
-      <Table/>
     </div>
 
   )
