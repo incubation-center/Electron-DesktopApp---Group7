@@ -59,7 +59,7 @@ const Navbar = () => {
                 <a href="/">Home</a>
               </li>
               <li className="text-gray-500 hover:text-indigo-200">
-                <a href="/contacus">Contact US</a>
+                <a className="hover:text-red-800 focus:text-white" href="/contacus">Contact US</a>
               </li>
             </ul>
             <div className="mt-3 space-y-2 lg:hidden md:inline-block"></div>

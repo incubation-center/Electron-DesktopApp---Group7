@@ -17,11 +17,9 @@ const App: React.FC = () => {
   return (
     <div>
       <Navbar />
-      <Routes>
-        <Route path="/" element={<Home />} />
-      </Routes>
       <Menubar>
         <Routes>
+        <Route path="/" element={<Home />} />
           <Route path="/contacus" element={<Contactus />} />
           <Route path="/f-attendance" element={<Fattendance />} />
           <Route path="/generatereport" element={<Generatereport />} />

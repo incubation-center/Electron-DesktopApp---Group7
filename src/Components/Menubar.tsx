@@ -1,4 +1,3 @@
-import React from "react";
 import { FunctionComponent, PropsWithChildren, useState } from "react";
 import { Link } from "react-router-dom";
 const Facultymenu: FunctionComponent<PropsWithChildren> = ({ children }) => {
@@ -9,23 +8,32 @@ const Facultymenu: FunctionComponent<PropsWithChildren> = ({ children }) => {
     { title: "Time Table ", src: "Timetable", path: "/s-timetable" },
     { title: "Attendance", src: "Attendance", path: "/s-attendace" },
     { title: "Rise Issue", src: "Riseissue", path: "/riseissue" },
-    { title: "Student Attendence", src: "Studentattendance", path: "/studentattendace" },
+    {
+      title: "Student Attendence",
+      src: "Studentattendance",
+      path: "/studentattendace",
+    },
     { title: "Student Marks", src: "Studentmarks", path: "/studentmarks" },
-    { title: "Generate Report", src: "Generatereport", path: "/generatereport" },
-    { title: "Log Out", src: "Logout", path: "/" }
+    {
+      title: "Generate Report",
+      src: "Generatereport",
+      path: "/generatereport",
+    },
+    { title: "Log Out", src: "Logout", path: "/" },
   ];
 
   return (
     <div className="flex">
       <div
-        className={` ${
+        className={`${
           open ? "w-72" : "w-20 "
         } bg-blue-300 h-screen p-5  pt-8 relative duration-300`}
       >
         <img
           src="./src/assets/control.png"
-          className={`absolute cursor-pointer -right-3 top-9 w-7 border-dark-purple
-       border-2 rounded-full  ${!open && "rotate-180"}`}
+          className={`absolute cursor-pointer -right-3 top-9 w-7 border-dark-purple border-2 rounded-full  ${
+            !open && "rotate-180"
+          }`}
           onClick={() => setOpen(!open)}
         />
         <div className="flex gap-x-4 items-center">
@@ -48,10 +56,13 @@ const Facultymenu: FunctionComponent<PropsWithChildren> = ({ children }) => {
             <Link
               key={index}
               to={Menu.path}
-              className={`flex  rounded-md p-2 cursor-pointer hover:bg-light-white text-gray-500 text-sm items-center gap-x-4 
-           ${index === 0 && "bg-light-white"} `}
+              className={`link flex rounded-md p-2 cursor-pointer hover:bg-light-white text-gray-500 text-sm items-center gap-x-4  
+           ${index === 0 && "bg-light-white"}`}
             >
-              <img src={`./src/assets/${Menu.src}.png`} />
+              <a>
+                <img src={`./src/assets/${Menu.src}.png`} />
+              </a>
+
               <span
                 className={`${
                   !open && "hidden"
