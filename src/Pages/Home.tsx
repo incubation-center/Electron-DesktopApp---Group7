@@ -1,6 +1,6 @@
 const Home = () => {
   return (
-    <div className="flex h-screen">
+    <div className="flex justify-center items-center w-screen h-screen">
       <div className="max-w-sm h-80 mt-24 m-auto bg-white border border-gray-200 rounded-lg shadow-md dark:bg-blue-300 ">
         <a href="#">
           <img
