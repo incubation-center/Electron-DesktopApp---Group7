@@ -69,6 +69,7 @@ function Table({ data }: { data: Data }) {
     { key: "ip_address", label: "IP address" },
   ];
 
+
   const sortedData = useCallback(
     () => sortData({ tableData: data, sortKey, reverse: sortOrder === "desc" }),
     [data, sortKey, sortOrder]

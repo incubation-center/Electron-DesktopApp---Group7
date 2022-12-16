@@ -11,8 +11,9 @@ import data from "../data.json"
 //   { key: "ip_address", label: "IP address" },
 // ];
 function Exam() {
+
   return (
-    <div>Exam page!!!!
+    <div>Exam page!!!! Exam Sub Marks Result
       <Table data={data} />
     </div>
   )
