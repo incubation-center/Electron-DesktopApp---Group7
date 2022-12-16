@@ -2,8 +2,8 @@ import Button from "@/Components/Button";
 
 const Riseissue = () => {
   return (
-    <div className="flex items-center justify-center w-screen ">
-      <div className="bg-white rounded-xl shadow-lg text-gray-600">
+    <div className="flex items-center justify-center w-screen">
+      <div className="bg-white rounded-xl shadow-lg text-gray-600 p-8">
         <form action="" className="flex flex-col space-y-4">
           <div>
             <label htmlFor="" className="text-lg font-bold">
