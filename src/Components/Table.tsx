@@ -78,7 +78,7 @@ function Table({ data }: { data: Data }) {
 
   return (
     <table>
-      <thead>
+      <thead className="bg-gray-300">
         <tr>
           {headers.map((row) => {
             return (
@@ -101,13 +101,13 @@ function Table({ data }: { data: Data }) {
       <tbody>
         {sortedData().map((data) => {
           return (
-            <tr key={data.id}>
+            <tr>
+              <td>{data.id}</td>
               <td>{data.first_name}</td>
               <td>{data.last_name}</td>
               <td>{data.email}</td>
               <td>{data.gender}</td>
               <td>{data.ip_address}</td>
-              {/* <td>{data.point}</td> */}
             </tr>
           );
         })}
