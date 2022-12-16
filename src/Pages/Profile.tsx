@@ -3,16 +3,17 @@ import Button from "@/Components/Button";
 
 const Profile = () => {
   return (
-    <div className="flex justify-center w-screen">
-      <div className="flex justify-around items-center ml-20 mr-20 mt-20 pl-20">
-        <div className="mr-20">
+    <div className="flex justify-center items-center mb-auto mt-20 w-screen">
+        <div className="mr-10">
           <Avatar />
-          <a href="#">
-            <Button>Update Info</Button>
-          </a>
+          <div className="flex items-center justify-center mt-10">
+            <button className="bg-blue-500 hover:bg-blue-700 text-white py-2 px-4 rounded grid">
+              Update Info
+            </button>
+          </div>
         </div>
         <div>
-          <div className="bg-gray-lighter">
+          <div className="bg-gray-lighter ml-10">
             <div className="container flex-1 flex flex-col items-center justify-center px-2">
               <div className="bg-white px-6 py-8 rounded shadow-md text-black w-full">
                 <h1 className="mb-8 text-3xl text-center">Your Profile</h1>
@@ -27,7 +28,7 @@ const Profile = () => {
                   </div>
                   <h3 className="pl-1 pb-2">Phone Number : </h3>
                   <div className="block border border-grey-light w-full rounded mb-4 pl-3">
-                    +855 12 123456
+                    012123456
                   </div>
                   <h3 className="pl-1 pb-2">Address : </h3>
                   <div className="block border border-grey-light w-full rounded mb-4 pl-3">
@@ -43,7 +44,6 @@ const Profile = () => {
           </div>
         </div>
       </div>
-    </div>
 
     // <div className='antialiased w-full justify-center items-center shadow-lg'>
     //   <div className='flex flex-col bg-white rounded-xl shadow-lg'>
