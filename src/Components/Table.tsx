@@ -7,6 +7,8 @@ type SortKeys = keyof Data[0];
 
 type SortOrder = "ascn" | "desc";
 
+
+
 function sortData({
   tableData,
   sortKey,
@@ -66,6 +68,7 @@ function Table({ data }: { data: Data }) {
     { key: "gender", label: "Gender" },
     { key: "ip_address", label: "IP address" },
   ];
+
   const sortedData = useCallback(
     () => sortData({ tableData: data, sortKey, reverse: sortOrder === "desc" }),
     [data, sortKey, sortOrder]
@@ -74,7 +77,6 @@ function Table({ data }: { data: Data }) {
     setSortOrder(sortOrder === "ascn" ? "desc" : "ascn");
     setSortKey(key);
   }
-
   return (
     <table>
       <thead>
