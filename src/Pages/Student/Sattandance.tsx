@@ -1,9 +1,72 @@
+import React from "react";
 
+import Table from "rc-table";
+import TableCustom from "@/Components/TableCustom";
 
-const Sattandance = () => {
+// const headers: { key: SortKeys; label: string }[] = [
+//   { key: "id", label: "ID" },
+//   { key: "first_name", label: "First name" },
+//   { key: "last_name", label: "Last name" },
+//   { key: "email", label: "Email" },
+//   { key: "gender", label: "Gender" },
+//   { key: "ip_address", label: "IP address" },
+// ];
+
+const columns = [
+  {
+    title: "Subject",
+    dataIndex: "subject",
+    key: "subject",
+    width: 200,
+  },
+  {
+    title: "Total",
+    dataIndex: "total",
+    key: "total",
+    width: 150,
+  },
+  {
+    title: "Present",
+    dataIndex: "present",
+    key: "present",
+    width: 150,
+  },
+  {
+    title: "Absent",
+    dataIndex: "absent",
+    key: "absent",
+    width: 150,
+  },
+  {
+    title: "Percentage",
+    dataIndex: "percentage",
+    key: "percentage",
+    width: 150,
+  },
+];
+const data = [
+  {
+    subject: "Database Management",
+    total: 50,
+    present: 25,
+    absent: 25,
+    percentage: 90,
+  },
+  {
+    subject: "Computer Science",
+    total: 50,
+    present: 45,
+    absent: 5,
+    percentage: 90,
+  },
+];
+function Sattandance() {
   return (
-    <div>S attandance for student view !!! Sub Total Present Absent Precentage</div>
-  )
+    <div className="p-10">
+      <p className="mb-5">Sattandance: sub total present absent percentage</p>
+      <TableCustom data={data} columns={columns}/>
+    </div>
+  );
 }
 
-export default Sattandance
+export default Sattandance;
