@@ -33,25 +33,25 @@ const columns = [
     title: "Exam",
     dataIndex: "exam",
     key: "exam",
-    width: 100,
+    width: 200,
   },
   {
     title: "Subject",
     dataIndex: "subject",
     key: "subject",
-    width: 100,
+    width: 150,
   },
   {
     title: "Marks",
     dataIndex: "mark",
     key: "mark",
-    width: 200,
+    width: 150,
   },
   {
     title: "Result",
     dataIndex: "result",
     key: "result",
-    width: 200,
+    width: 150,
   },
   {
     title: "Operations",
@@ -62,8 +62,8 @@ const columns = [
 ];
 function Exam() {
   return (
-    <div>
-      Exam page!!!! Exam Sub Marks Result
+    <div className="p-10">
+      <p className="mb-5">Exam page!!!! Exam Sub Marks Result</p>
       <TableCustom data={data} columns={columns} />
     </div>
   );
