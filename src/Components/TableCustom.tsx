@@ -7,14 +7,14 @@ import {
 } from "rc-table/lib/interface";
 const bgRowColor = (record: any, index: number, indent: number): string => {
   if (index % 2 === 0) {
-    return "bg-gray-500";
+    return "bg-gray-200";
   }
-  return "bg-gray-400";
+  return "bg-gray-100";
 };
 
 const onHeaderRow = (record: any, index: number | undefined) => {
   const props: HTMLAttributes<any> | TdHTMLAttributes<any> = {
-    className: "bg-sky-500",
+    className: "bg-sky-300",
   };
   return props;
 };
