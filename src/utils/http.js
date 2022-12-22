@@ -1,3 +1,4 @@
+import { logout } from "@/services/auth";
 import axios from "axios";
 
 const REFRESH_TOKEN_URL = "http://192.168.0.85:3000/api/refreshToken";
@@ -146,7 +147,7 @@ export const client = createAxiosClient({
   getCurrentAccessToken,
   getCurrentRefreshToken,
   refreshTokenUrl: REFRESH_TOKEN_URL,
-  logout,
+  logout: logout,
   setRefreshedTokens,
 });
 
