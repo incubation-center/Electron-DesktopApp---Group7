@@ -36,6 +36,7 @@
     }
   },
   "dependencies": {
+    "ahooks": "^3.7.3",
     "axios": "^1.2.1",
     "rc-table": "^7.28.3",
     "react-router-dom": "^6.4.4"
