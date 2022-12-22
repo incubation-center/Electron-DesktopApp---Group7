@@ -1,7 +1,7 @@
 import axios from "axios";
 
-const REFRESH_TOKEN_URL = "http://localhost:3000/api/refreshToken";
-const BASE_URL = "http://localhost:3000/api";
+const REFRESH_TOKEN_URL = "http://192.168.0.85:3000/api/refreshToken";
+const BASE_URL = "http://192.168.0.85:3000/api";
 
 let failedQueue = [];
 let isRefreshing = false;
@@ -135,12 +135,6 @@ function setRefreshedTokens(tokens) {
   localStorage.setItem("refreshToken", tokens.refreshToken);
 }
 
-async function logout() {
-  console.log("logout...");
-  localStorage.removeItem("accessToken");
-  localStorage.removeItem("refreshToken");
-  window.location.href = "/login";
-}
 export const client = createAxiosClient({
   options: {
     baseURL: BASE_URL,
@@ -155,36 +149,6 @@ export const client = createAxiosClient({
   logout,
   setRefreshedTokens,
 });
-
-export function register({ email, password }) {
-  return client.post(
-    "/register",
-    { email, password },
-    { authorization: false }
-  );
-}
-
-export const login = async ({ email, password }) => {
-  let res = await client.post(
-    "/login",
-    { email, password },
-    { authorization: false }
-  );
-  if (res.status === 200) {
-    localStorage.setItem("accessToken", res.data.accessToken);
-    localStorage.setItem("refreshToken", res.data.refreshToken);
-    location.href = "/home";
-  }
-  return res;
-};
-
-export const getProfile = async () => {
-  return await client.get("/user/profile");
-};
-
-export const isAuth = () => {
-  return !!localStorage.getItem("accessToken");
-};
 
 export const isClient = () => {
   if (typeof window !== "undefined") {
