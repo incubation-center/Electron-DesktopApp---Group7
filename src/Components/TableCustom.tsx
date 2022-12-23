@@ -14,7 +14,7 @@ const bgRowColor = (record: any, index: number, indent: number): string => {
 
 const onHeaderRow = (record: any, index: number | undefined) => {
   const props: HTMLAttributes<any> | TdHTMLAttributes<any> = {
-    className: "bg-sky-500/30",
+    className: "bg-sky-300",
   };
   return props;
 };
