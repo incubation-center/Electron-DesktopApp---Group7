@@ -58,7 +58,7 @@ const Studentmarks = () => {
   return (
     <div className='m-10'>
       <div className='flex mb-10'>
-        <div>Batch :</div>
+        Batch :
         <select className="pr-2 pl-2 ml-2">
           <option selected>1</option>
           <option>2</option>
@@ -70,14 +70,17 @@ const Studentmarks = () => {
           <option>8</option>
         </select>
       </div>
+
       <div className='text-left'>
         <TableCustom data={data} columns={columns} />
       </div>
+
       <div className="flex justify-center items-center mt-7">
         <button className="bg-blue-500 hover:bg-blue-700 text-white py-2 px-4 rounded grid">
             Add
         </button>
       </div>
+      
     </div>
   )
 }
