@@ -1,4 +1,5 @@
 import Button from '@/Components/Button'
+import { Link } from 'react-router-dom';
 import React from 'react'
 
 const Login = () => {
@@ -15,7 +16,9 @@ const Login = () => {
             <div className='flex border rounded-xl relative'>
               <input type="password" name='password' placeholder='Password' className='w-full py-4 px-6 border rounded-xl bg-slate-50 focus:outline-none border-none'/>
             </div>
-            <Button className='w-full bg-gradient-to-r from-blue-400 to-indigo-400 rounded-md py-3 text-gray-50-text-lg text-white button'>Login</Button>
+            <Link to={"/"}>
+              <Button className='w-full bg-gradient-to-r from-blue-400 to-indigo-400 rounded-md py-3 text-gray-50-text-lg text-white button'>Login</Button>
+            </Link>
             <p className='text-center text-gray-400 italic'>don't have an account yet? {" "} <a href="/signup" className='text-blue-600 not-italic font-bold'>Sign Up</a></p>
           </form>
         </div>

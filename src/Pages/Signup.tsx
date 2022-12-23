@@ -7,36 +7,36 @@ const Signup = () => {
             <div className="container max-w-sm mx-auto flex-1 flex flex-col items-center px-2 mt-10">
                 <div className="bg-white px-6 py-8 rounded shadow-md text-black w-full">
                     <h1 className="mb-8 text-3xl text-center">Sign up</h1>
-                    <input 
+                    <input
                         type="text"
                         className="block border border-grey-light w-full p-3 rounded mb-4"
                         name="firstname"
                         placeholder="First Name" />
-                    
-                    <input 
+
+                    <input
                         type="text"
                         className="block border border-grey-light w-full p-3 rounded mb-4"
                         name="lastname"
                         placeholder="Last Name" />
-                    
-                    <input 
+
+                    <input
                         type="text"
                         className="block border border-grey-light w-full p-3 rounded mb-4"
                         name="phonenumber"
                         placeholder="Phone Number" />
 
-                    <input 
+                    <input
                         type="text"
                         className="block border border-grey-light w-full p-3 rounded mb-4"
                         name="email"
                         placeholder="Email" />
 
-                    <input 
+                    <input
                         type="password"
                         className="block border border-grey-light w-full p-3 rounded mb-4"
                         name="password"
                         placeholder="Password" />
-                    <input 
+                    <input
                         type="password"
                         className="block border border-grey-light w-full p-3 rounded mb-4"
                         name="confirm_password"
@@ -52,7 +52,7 @@ const Signup = () => {
                         <option>Female</option>
                     </select>
                     <div className='flex items-center justify-center mt-4'>
-                        <a href="#">
+                        <a href={"/login"}>
                         <button className="bg-blue-500 hover:bg-blue-700 text-white py-2 px-4 rounded grid">
                             Submit
                         </button>
@@ -60,8 +60,8 @@ const Signup = () => {
                     </div>
                 </div>
                 <div className="text-grey-dark mt-6">
-                    Already have an account ?  
-                    <a className="no-underline border-b border-blue text-blue" href="#">
+                    Already have an account ?
+                    <a className="no-underline border-b border-blue text-blue" href={"/login"}>
                         &nbsp;Log in
                     </a>.
                 </div>

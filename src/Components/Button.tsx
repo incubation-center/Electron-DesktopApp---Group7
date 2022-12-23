@@ -1,7 +1,8 @@
+import { Link } from 'react-router-dom';
 
 const Button = ({
     className = '',
-    children = ''
+    children = '',
 }) => {
   return (
     <button className={`bg-gray-400 ${className}`} >
