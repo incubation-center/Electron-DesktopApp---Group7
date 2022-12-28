@@ -1,56 +1,34 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 
-import Table from "rc-table";
 import TableCustom from "@/Components/TableCustom";
+import { getExams } from "@/services/exam";
+import { Exam } from "@/types";
+import Table from "rc-table";
 
-// const headers: { key: SortKeys; label: string }[] = [
-//   { key: "id", label: "ID" },
-//   { key: "first_name", label: "First name" },
-//   { key: "last_name", label: "Last name" },
-//   { key: "email", label: "Email" },
-//   { key: "gender", label: "Gender" },
-//   { key: "ip_address", label: "IP address" },
-// ];
-
-const data = [
-  {
-    exam: "Time stamp",
-    subject: "Subject1",
-    mark: 100,
-    result: "Status",
-    key: "1",
-  },
-  {
-    exam: "Time stamp",
-    subject: "Subject2",
-    mark: 100,
-    result: "Status",
-    key: "2",
-  },
-];
+/**
+ *  "id": 2,
+        "name": "Exam 2",
+        "date": "2022-12-22T08:58:49.644Z",
+        "schoolId": 1,
+        "subjectId": 2
+ */
 const columns = [
   {
-    title: "Exam",
-    dataIndex: "exam",
-    key: "exam",
+    title: "id",
+    dataIndex: "id",
+    key: "id",
     width: 200,
   },
   {
-    title: "Subject",
-    dataIndex: "subject",
-    key: "subject",
+    title: "date",
+    dataIndex: "date",
+    key: "date",
     width: 150,
   },
   {
-    title: "Marks",
-    dataIndex: "mark",
-    key: "mark",
-    width: 150,
-  },
-  {
-    title: "Result",
-    dataIndex: "result",
-    key: "result",
+    title: "name",
+    dataIndex: "name",
+    key: "name",
     width: 150,
   },
   {
@@ -60,13 +38,53 @@ const columns = [
     render: () => <a href="#">Delete</a>,
   },
 ];
-function Exam() {
+
+const testData = [
+  {
+    id: 2,
+    name: "Exam 2",
+    date: "2022-12-22T08:58:49.644Z",
+    schoolId: 1,
+    subjectId: 2,
+  },
+  {
+    id: 3,
+    name: "Exam 3",
+    date: "2022-12-22T08:58:49.713Z",
+    schoolId: 1,
+    subjectId: 3,
+  },
+  {
+    id: 4,
+    name: "Exam 4",
+    date: "2022-12-22T08:58:49.764Z",
+    schoolId: 1,
+    subjectId: 4,
+  },
+  {
+    id: 5,
+    name: "Exam 5",
+    date: "2022-12-22T08:58:49.826Z",
+    schoolId: 1,
+    subjectId: 5,
+  },
+];
+function ExamPage() {
+  const [exams, setExams] = useState<Exam[]>([]);
+  useEffect(() => {
+    getExams().then((res) => {
+      setExams(res);
+    });
+    return () => {
+      setExams([]);
+    };
+  }, []);
   return (
     <div className="p-10">
       <p className="mb-5">Exam page!!!! Exam Sub Marks Result</p>
-      <TableCustom data={data} columns={columns} />
+      <TableCustom data={exams} columns={columns} />
     </div>
   );
 }
 
-export default Exam;
+export default ExamPage;

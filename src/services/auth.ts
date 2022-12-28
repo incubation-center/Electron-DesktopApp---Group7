@@ -32,3 +32,7 @@ export const getProfile = async () => {
 export const isAuth = () => {
   return !!localStorage.getItem("accessToken");
 };
+
+export const userInfo = () => {
+  return {};
+};

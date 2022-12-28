@@ -1,4 +1,5 @@
 import React, { HTMLAttributes, TdHTMLAttributes } from "react";
+import { DefaultRecordType } from "rc-table/lib/interface";
 import Table from "rc-table";
 import {
   ColumnsType,
@@ -23,7 +24,7 @@ const TableCustom = ({
   data,
   columns,
 }: {
-  data: ColumnsType<any> | undefined;
+  data: readonly DefaultRecordType[] | undefined;
   columns: ColumnsType<ColumnGroupType<any> | ColumnType<any>> | undefined;
 }) => {
   return (

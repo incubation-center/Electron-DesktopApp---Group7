@@ -8,7 +8,7 @@ export const getExam = async (id: string) => {
 };
 
 export const getExams = async () => {
-  const res = await client.get("/exam");
+  const res = await client.get("/exams");
   if (res.status !== 200) throw new Error("Failed to fetch exams");
   return res.data as Exam[];
 };
