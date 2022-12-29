@@ -1,27 +1,61 @@
-import { FunctionComponent, PropsWithChildren, useState } from "react";
+import {
+  FunctionComponent,
+  PropsWithChildren,
+  useEffect,
+  useState,
+} from "react";
 import { Link } from "react-router-dom";
-const Facultymenu: FunctionComponent<PropsWithChildren> = ({ children }) => {
+
+interface childrenProps {
+  children: JSX.Element;
+}
+const userRole = "admin";
+const MenuBar = ({ children }: childrenProps) => {
   const [open, setOpen] = useState(true);
-  const Menus = [
-    { title: "Profile", src: "Profile", path: "/s-profile" },
-    { title: "Exam", src: "Exam", path: "/exam" },
-    { title: "Time Table ", src: "Timetable", path: "/s-timetable" },
-    { title: "SAttendance ", src: "Attendance", path: "/s-attendace" },
-    { title: "Attendance", src: "Attendance", path: "/attendancestudent" },
-    { title: "Rise Issue", src: "Riseissue", path: "/riseissue" },
-    {
-      title: "FAttendence",
-      src: "Studentattendance",
-      path: "/studentattendace",
-    },
-    { title: "Student Marks", src: "Studentmarks", path: "/studentmarks" },
-    {
-      title: "Generate Report",
-      src: "Generatereport",
-      path: "/generatereport",
-    },
-    { title: "Log Out", src: "Logout", path: "/" },
-  ];
+  const [menus, setMenus] = useState<any[]>([]);
+  useEffect(() => {
+    const Menus = [
+      { title: "Profile", path: "/profile" },
+      ["admin", "teacher"].includes(userRole) && {
+        title: "Subjects",
+        path: "/subjects",
+      },
+      ["admin", "teacher"].includes(userRole) && {
+        title: "Students",
+        path: "/students",
+      },
+      ["admin"].includes(userRole) && {
+        title: "Faculties",
+        path: "/faculties",
+      },
+      ["teacher"].includes(userRole) && {
+        title: "Student Results",
+        path: "/results",
+      },
+      ["admin"].includes(userRole) && { title: "Courses", path: "/courses" },
+      ["teacher"].includes(userRole) && { title: "Exams", path: "/exam" },
+      ["teacher"].includes(userRole) && {
+        title: "Time Table",
+        path: "/timetables",
+      },
+      ["teacher", "student"].includes(userRole) && {
+        title: "Attendance",
+        path: "/attendances",
+      },
+      { title: "Rise Issues", path: "/riseissues" },
+      ["admin"].includes(userRole) && {
+        title: "Faculty Salary",
+        path: "/facultysalary",
+      },
+      ["admin"].includes(userRole) && {
+        title: "Student Payment",
+        path: "/studentpayment",
+      },
+      { title: "Log Out", path: "/" },
+    ];
+    setMenus(Menus.filter((m) => m));
+    return () => {};
+  }, []);
 
   return (
     <div className="flex">
@@ -53,20 +87,20 @@ const Facultymenu: FunctionComponent<PropsWithChildren> = ({ children }) => {
           </h1>
         </div>
         <ul className="pt-6">
-          {Menus.map((Menu, index) => (
+          {menus.map((item, index) => (
             <Link
               key={index}
-              to={Menu.path}
-              className={`link flex rounded-md p-2 cursor-pointer hover:bg-light-white text-gray-500 text-sm items-center gap-x-4  
+              to={item.path}
+              className={`link flex rounded-md p-2 cursor-pointer hover:bg-light-white text-gray-500 text-sm items-center gap-x-4
            ${index === 0 && "bg-light-white"}`}
             >
-                <img src={`./src/assets/${Menu.src}.png`} />
+              {/* <img src={`./src/assets/${item.src}.png`} /> */}
               <span
                 className={`${
                   !open && "hidden"
                 } origin-left duration-200 text-gray-500 text-lg`}
               >
-                {Menu.title}
+                {item.title}
               </span>
             </Link>
           ))}
@@ -76,4 +110,4 @@ const Facultymenu: FunctionComponent<PropsWithChildren> = ({ children }) => {
     </div>
   );
 };
-export default Facultymenu;
+export default MenuBar;
