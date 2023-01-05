@@ -1,9 +1,8 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 
 import TableCustom from "@/Components/TableCustom";
 import { getExams } from "@/services/exam";
 import { Exam } from "@/types";
-import Table from "rc-table";
 
 /**
  *  "id": 2,

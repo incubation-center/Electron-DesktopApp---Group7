@@ -20,6 +20,7 @@ const onHeaderRow = (record: any, index: number | undefined) => {
   return props;
 };
 
+
 const TableCustom = ({
   data,
   columns,
@@ -30,7 +31,6 @@ const TableCustom = ({
   return (
     <Table
       onHeaderRow={onHeaderRow}
-      className=""
       columns={columns}
       data={data}
       rowClassName={bgRowColor}
@@ -38,5 +38,4 @@ const TableCustom = ({
   );
 };
 
-export default TableCustom;
-// files types
+export default TableCustom; 

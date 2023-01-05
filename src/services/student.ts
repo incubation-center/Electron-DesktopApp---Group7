@@ -7,5 +7,6 @@ export const createStudent = async (student: Student) => {
 
 export const getStudents = async () => {
   const data = await client.get("/students");
+
   return data.data as Student[];
 };

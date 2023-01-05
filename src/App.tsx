@@ -1,7 +1,7 @@
 import { Route, Routes } from "react-router-dom";
 import Contactus from "./Pages/Contactus";
 import Home from "./Pages/Home";
-import Navbar from "./Pages/Navbar";
+import Navbar from "./Components/Navbar";
 import Generatereport from "./Pages/Faculty/Generatereport";
 import Studentattendance from "./Pages/Faculty/Ftudentattendance";
 import Studentmarks from "./Pages/Faculty/Studentmarks";
@@ -14,6 +14,11 @@ import Menubar from "./Components/Menubar";
 import Attandance from "./Pages/Faculty/Attandance";
 import Login from "./Pages/Login";
 import Signup from "./Pages/Signup";
+import Subject from "./Components/Subject";
+import Students from "./Pages/Admin/Students";
+import Teachers from "./Pages/Admin/Teachers";
+import Facultysalary from "./Pages/Admin/Facultysalary";
+import Studentpayment from "./Pages/Admin/Studentpayment";
 
 const App: React.FC = () => {
   return (
@@ -28,10 +33,16 @@ const App: React.FC = () => {
           <Route path="/studentattendace" element={<Studentattendance />} />
           <Route path="/studentmarks" element={<Studentmarks />} />
           <Route path="/exam" element={<Exam />} />
-          <Route path="/s-profile" element={<Profile />} />
-          <Route path="/s-attendace" element={<Sattandance />} />
+          <Route path="/students" element={<Students />} />
+          <Route path="/facultysalary" element={<Facultysalary />} />
+          <Route path="/studentpayment" element={<Studentpayment />} />
+          <Route path="/faculties" element={<Teachers/>} />
+          {/* <Route path="/courses" element={<Courses/>} /> */}
+          <Route path="/profile" element={<Profile />} />
+          <Route path="/subjects" element={<Subject />} />
+          <Route path="/attendances" element={<Sattandance />} />
           <Route path="/s-timetable" element={<Stimetable />} />
-          <Route path="/riseissue" element={<Riseissue />} />
+          <Route path="/riseissues" element={<Riseissue />} />
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<Signup />} />
         </Routes>

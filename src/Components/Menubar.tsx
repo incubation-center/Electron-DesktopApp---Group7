@@ -15,43 +15,51 @@ const MenuBar = ({ children }: childrenProps) => {
   const [menus, setMenus] = useState<any[]>([]);
   useEffect(() => {
     const Menus = [
-      { title: "Profile", path: "/profile" },
+      { title: "Profile", path: "/profile", src: "profile" },
       ["admin", "teacher"].includes(userRole) && {
         title: "Subjects",
         path: "/subjects",
+        src: "subject"
       },
       ["admin", "teacher"].includes(userRole) && {
         title: "Students",
         path: "/students",
+        src: "student"
       },
       ["admin"].includes(userRole) && {
         title: "Faculties",
         path: "/faculties",
+        src: "teacher"
       },
       ["teacher"].includes(userRole) && {
         title: "Student Results",
         path: "/results",
+        src: "Attendance"
       },
-      ["admin"].includes(userRole) && { title: "Courses", path: "/courses" },
-      ["teacher"].includes(userRole) && { title: "Exams", path: "/exam" },
+      // ["admin"].includes(userRole) && { title: "Courses", path: "/subjects", src:"course" },
+      ["teacher"].includes(userRole) && { title: "Exams", path: "/exam", src:"course" },
       ["teacher"].includes(userRole) && {
         title: "Time Table",
         path: "/timetables",
+        src:"salary"
       },
       ["teacher", "student"].includes(userRole) && {
         title: "Attendance",
         path: "/attendances",
+        src:"Attendence"
       },
-      { title: "Rise Issues", path: "/riseissues" },
+      { title: "Rise Issues", path: "/riseissues",src:"issue" },
       ["admin"].includes(userRole) && {
         title: "Faculty Salary",
         path: "/facultysalary",
+        src:"salary"
       },
       ["admin"].includes(userRole) && {
         title: "Student Payment",
         path: "/studentpayment",
+        src:"salary"
       },
-      { title: "Log Out", path: "/" },
+      { title: "Log Out", path: "/", src:"logout" },
     ];
     setMenus(Menus.filter((m) => m));
     return () => {};
@@ -94,7 +102,7 @@ const MenuBar = ({ children }: childrenProps) => {
               className={`link flex rounded-md p-2 cursor-pointer hover:bg-light-white text-gray-500 text-sm items-center gap-x-4
            ${index === 0 && "bg-light-white"}`}
             >
-              {/* <img src={`./src/assets/${item.src}.png`} /> */}
+              <img src={`./src/assets/${item.src}.png`} />
               <span
                 className={`${
                   !open && "hidden"

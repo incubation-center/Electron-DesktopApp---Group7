@@ -6,7 +6,7 @@ export const login = async ({ email, password }: AuthLogin) => {
   if (res.status === 200) {
     localStorage.setItem("accessToken", res.data.accessToken);
     localStorage.setItem("refreshToken", res.data.refreshToken);
-    location.href = "/home";
+    location.href = "/";
   }
 };
 
@@ -15,7 +15,7 @@ export const register = async ({ email, password }: AuthRegister) => {
   if (res.status === 200) {
     localStorage.setItem("accessToken", res.data.accessToken);
     localStorage.setItem("refreshToken", res.data.refreshToken);
-    location.href = "/home";
+    location.href = "/";
   }
 };
 

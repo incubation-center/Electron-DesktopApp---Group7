@@ -1,4 +1,4 @@
-import Button from '@/Components/Button'
+
 import React from 'react'
 import data from "../data.json"
 import Table from '@/Components/Table'
