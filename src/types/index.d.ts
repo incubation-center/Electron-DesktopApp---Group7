@@ -88,6 +88,7 @@ export type Subject = {
   id: number;
   name: string;
   code: string | null;
+  description: string;
   classId: number;
   schoolId: number;
   teacherId: number;
@@ -115,6 +116,7 @@ export type Result = {
   schoolId: number;
   studentId: number;
   examId: number;
+  status: string;
 };
 
 /**
@@ -125,7 +127,7 @@ export type Attendance = {
   id: number;
   date: Date;
   status: string | null;
-  attendanceType: AttendanecEnumType;
+  attendanceType: AttendanceEnumType;
   teacherId: number;
   subjectId: number;
   schoolId: number;
@@ -234,14 +236,14 @@ export type Setting = {
 // Based on
 // https://github.com/microsoft/TypeScript/issues/3192#issuecomment-261720275
 
-export const AttendanecEnumType: {
+export const AttendanceEnumType: {
   present: "present";
   absent: "absent";
   leave: "leave";
 };
 
-export type AttendanecEnumType =
-  typeof AttendanecEnumType[keyof typeof AttendanecEnumType];
+export type AttendanceEnumType =
+  typeof AttendanceEnumType[keyof typeof AttendanceEnumType];
 
 export const RoleEnumType: {
   admin: "admin";

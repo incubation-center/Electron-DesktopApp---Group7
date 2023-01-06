@@ -1,7 +1,17 @@
 import Avatar from "@/Components/Avatar";
 import Button from "@/Components/Button";
+import { getExams } from "@/services/exam";
+import { useEffect } from "react";
+
 
 const Profile = () => {
+  useEffect(() => {
+    getExams().then((res) => {
+      console.log(res)
+    });
+    return () => {
+    };
+  }, []);
   return (
     <div className="flex justify-center items-center mb-auto mt-20 w-screen">
         <div className="mr-10">

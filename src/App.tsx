@@ -28,10 +28,10 @@ const App: React.FC = () => {
           <Route path="/studentattendace" element={<Studentattendance />} />
           <Route path="/studentmarks" element={<Studentmarks />} />
           <Route path="/exam" element={<Exam />} />
-          <Route path="/s-profile" element={<Profile />} />
+          <Route path="/profile" element={<Profile />} />
           <Route path="/s-attendace" element={<Sattandance />} />
           <Route path="/s-timetable" element={<Stimetable />} />
-          <Route path="/riseissue" element={<Riseissue />} />
+          <Route path="/riseissues" element={<Riseissue />} />
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<Signup />} />
         </Routes>
