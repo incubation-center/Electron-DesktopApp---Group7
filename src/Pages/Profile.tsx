@@ -1,8 +1,18 @@
 import Avatar from "@/Components/Avatar";
-import { useState } from "react";
+import { getUserProfile } from "@/services/profile";
+import { useEffect, useState } from "react";
 
 const Profile = () => {
   const [showModal, setShowModal] = useState(false);
+  const [userProfile, setUserProfile] = useState<any>({});
+  useEffect(() => {
+    getUserProfile().then((res) => {
+      console.log(res);
+      setUserProfile(res);
+    });
+    return () => {};
+  }, []);
+
   return (
     <div className="flex justify-center items-center mb-auto mt-20 w-screen">
       <div className="mr-10">
@@ -44,6 +54,7 @@ const Profile = () => {
                           className="appearance-none block w-full bg-gray-100 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
                           id="grid-password"
                           type="password"
+                          value={userProfile.name}
                           placeholder="Name"
                         />
                       </div>
@@ -124,23 +135,23 @@ const Profile = () => {
               <div className="grid grid-cols-2">
                 <h3 className="pl-1 pb-2">Name : </h3>
                 <div className="block border border-grey-light w-full rounded mb-4 pl-3">
-                  Lim Kimsea
+                  {userProfile.name}
                 </div>
                 <h3 className="pl-1 pb-2">Email Address : </h3>
                 <div className="block border border-grey-light w-full rounded mb-4 pl-3">
-                  lim.kimsea19@kit.edu.kh
+                  {userProfile.email}
                 </div>
                 <h3 className="pl-1 pb-2">Phone Number : </h3>
                 <div className="block border border-grey-light w-full rounded mb-4 pl-3">
-                  012123456
+                  {userProfile.phone || "0123456789"}
                 </div>
                 <h3 className="pl-1 pb-2">Address : </h3>
                 <div className="block border border-grey-light w-full rounded mb-4 pl-3">
-                  Kampong Cham, Cambodia
+                  {userProfile.address}
                 </div>
                 <h3 className="pl-1 pb-2">Role : </h3>
                 <div className="block border border-grey-light w-full rounded mb-4 pl-3">
-                  Lecturer
+                  {userProfile.role}
                 </div>
               </div>
             </div>
