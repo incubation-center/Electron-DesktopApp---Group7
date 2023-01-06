@@ -1,6 +1,4 @@
 import {
-  FunctionComponent,
-  PropsWithChildren,
   useEffect,
   useState,
 } from "react";
@@ -9,7 +7,7 @@ import { Link } from "react-router-dom";
 interface childrenProps {
   children: JSX.Element;
 }
-const userRole = "teacher";
+const userRole = "admin";
 const MenuBar = ({ children }: childrenProps) => {
   const [open, setOpen] = useState(true);
   const [menus, setMenus] = useState<any[]>([]);
@@ -19,47 +17,47 @@ const MenuBar = ({ children }: childrenProps) => {
       ["admin", "teacher"].includes(userRole) && {
         title: "Subjects",
         path: "/subjects",
-        src: "subject"
+        src: "subject",
       },
-      ["admin", "teacher"].includes(userRole) && {
-        title: "Students",
-        path: "/students",
-        src: "student"
-      },
+             
       ["admin"].includes(userRole) && {
         title: "Faculties",
         path: "/faculties",
-        src: "teacher"
+        src: "teacher",
       },
       ["teacher"].includes(userRole) && {
         title: "Student Results",
-        path: "/results",
-        src: "Attendance"
+        path: "/studentresult",
+        src: "teacher",
       },
-      // ["admin"].includes(userRole) && { title: "Courses", path: "/subjects", src:"course" },
-      ["teacher"].includes(userRole) && { title: "Exams", path: "/exam", src:"course" },
+      ["admin"].includes(userRole) && { title: "Courses", path: "/class", src:"course" },
+      ["teacher"].includes(userRole) && {
+        title: "Exams",
+        path: "/exam",
+        src: "course",
+      },
       ["teacher"].includes(userRole) && {
         title: "Time Table",
         path: "/timetables",
-        src:"salary"
+        src: "salary",
       },
       ["teacher", "student"].includes(userRole) && {
         title: "Attendance",
         path: "/attendances",
-        src:"Attendence"
+        src: "Attendence",
       },
-      { title: "Rise Issues", path: "/riseissues",src:"issue" },
+      { title: "Rise Issues", path: "/riseissues", src: "issue" },
       ["admin"].includes(userRole) && {
         title: "Faculty Salary",
         path: "/facultysalary",
-        src:"salary"
+        src: "salary",
       },
       ["admin"].includes(userRole) && {
         title: "Student Payment",
         path: "/studentpayment",
-        src:"salary"
+        src: "salary",
       },
-      { title: "Log Out", path: "/", src:"logout" },
+      { title: "Log Out", path: "/", src: "logout" },
     ];
     setMenus(Menus.filter((m) => m));
     return () => {};
