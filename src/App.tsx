@@ -15,10 +15,10 @@ import Attandance from "./Pages/Faculty/Attandance";
 import Login from "./Pages/Login";
 import Signup from "./Pages/Signup";
 import Subject from "./Components/Subject";
-import Students from "./Pages/Admin/Students";
 import Teachers from "./Pages/Admin/Teachers";
 import Facultysalary from "./Pages/Admin/Facultysalary";
 import Studentpayment from "./Pages/Admin/Studentpayment";
+import StudentPage from "./pages/Student";
 
 const App: React.FC = () => {
   return (
@@ -26,17 +26,17 @@ const App: React.FC = () => {
       <Navbar />
       <Menubar>
         <Routes>
-        <Route path="/" element={<Home />} />
+          <Route path="/" element={<Home />} />
           <Route path="/contacus" element={<Contactus />} />
           <Route path="/generatereport" element={<Generatereport />} />
           <Route path="/attendancestudent" element={<Attandance />} />
           <Route path="/studentattendace" element={<Studentattendance />} />
           <Route path="/studentmarks" element={<Studentmarks />} />
           <Route path="/exam" element={<Exam />} />
-          <Route path="/students" element={<Students />} />
+          <Route path="/students" element={<StudentPage />} />
           <Route path="/facultysalary" element={<Facultysalary />} />
           <Route path="/studentpayment" element={<Studentpayment />} />
-          <Route path="/faculties" element={<Teachers/>} />
+          <Route path="/faculties" element={<Teachers />} />
           {/* <Route path="/courses" element={<Courses/>} /> */}
           <Route path="/profile" element={<Profile />} />
           <Route path="/subjects" element={<Subject />} />

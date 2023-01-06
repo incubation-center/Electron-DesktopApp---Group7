@@ -51,8 +51,17 @@ export type Student = {
   email: string;
   phone: string | null;
   address: string | null;
-  schoolId: number;
-  userId: number;
+  password: string | null;
+  schoolId: number | null;
+  userId: number | null;
+};
+
+export type StudentInput = {
+  name: string;
+  email: string;
+  phone: string | null;
+  address: string | null;
+  password: string;
 };
 
 /**
