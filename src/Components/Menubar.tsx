@@ -9,7 +9,7 @@ import { Link } from "react-router-dom";
 interface childrenProps {
   children: JSX.Element;
 }
-const userRole = "admin";
+const userRole = "teacher";
 const MenuBar = ({ children }: childrenProps) => {
   const [open, setOpen] = useState(true);
   const [menus, setMenus] = useState<any[]>([]);
