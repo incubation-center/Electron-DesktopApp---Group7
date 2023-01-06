@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import TableCustom from "@/Components/TableCustom";
 import { getExams } from "@/services/exam";
 import { Exam } from "@/types";
-
+import Modal from "react-modal";
 /**
  *  "id": 2,
         "name": "Exam 2",
@@ -38,36 +38,6 @@ const columns = [
   },
 ];
 
-const testData = [
-  {
-    id: 2,
-    name: "Exam 2",
-    date: "2022-12-22T08:58:49.644Z",
-    schoolId: 1,
-    subjectId: 2,
-  },
-  {
-    id: 3,
-    name: "Exam 3",
-    date: "2022-12-22T08:58:49.713Z",
-    schoolId: 1,
-    subjectId: 3,
-  },
-  {
-    id: 4,
-    name: "Exam 4",
-    date: "2022-12-22T08:58:49.764Z",
-    schoolId: 1,
-    subjectId: 4,
-  },
-  {
-    id: 5,
-    name: "Exam 5",
-    date: "2022-12-22T08:58:49.826Z",
-    schoolId: 1,
-    subjectId: 5,
-  },
-];
 function ExamPage() {
   const [exams, setExams] = useState<Exam[]>([]);
   useEffect(() => {
@@ -78,9 +48,41 @@ function ExamPage() {
       setExams([]);
     };
   }, []);
+  const [modalIsOpen, setIsOpen] = useState(false);
+
+  const openModal = () => {
+    setIsOpen(true);
+  };
+
+  const closeModal = () => {
+    setIsOpen(false);
+  };
   return (
     <div className="p-10">
       <p className="mb-5">Exam page!!!! Exam Sub Marks Result</p>
+      <button
+        className="bg-blue-500 rounded-md hover:bg-blue-700"
+        onClick={openModal}
+      >
+        Add Exam
+      </button>
+      <Modal
+        isOpen={modalIsOpen}
+        onRequestClose={closeModal}
+        contentLabel="Example Modal"
+      >
+        <button className="" onClick={closeModal}>
+          Add Exam
+        </button>
+        <div>I am a modal</div>
+        <form>
+          <input />
+          <button>tab navigation</button>
+          <button>stays</button>
+          <button>inside</button>
+          <button>the modal</button>
+        </form>
+      </Modal>
       <TableCustom data={exams} columns={columns} />
     </div>
   );
