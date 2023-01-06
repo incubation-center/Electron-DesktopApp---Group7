@@ -1,9 +1,4 @@
-import {
-  FunctionComponent,
-  PropsWithChildren,
-  useEffect,
-  useState,
-} from "react";
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
 interface childrenProps {
@@ -26,6 +21,7 @@ const MenuBar = ({ children }: childrenProps) => {
         path: "/students",
         src: "student",
       },
+
       ["admin"].includes(userRole) && {
         title: "Faculties",
         path: "/faculties",
@@ -33,10 +29,14 @@ const MenuBar = ({ children }: childrenProps) => {
       },
       ["teacher"].includes(userRole) && {
         title: "Student Results",
-        path: "/results",
-        src: "Attendance",
+        path: "/studentresult",
+        src: "teacher",
       },
-      // ["admin"].includes(userRole) && { title: "Courses", path: "/subjects", src:"course" },
+      ["admin"].includes(userRole) && {
+        title: "Courses",
+        path: "/class",
+        src: "course",
+      },
       ["teacher"].includes(userRole) && {
         title: "Exams",
         path: "/exam",

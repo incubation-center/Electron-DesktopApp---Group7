@@ -12,3 +12,4 @@ export const getExams = async () => {
   if (res.status !== 200) throw new Error("Failed to fetch exams");
   return res.data as Exam[];
 };
+
