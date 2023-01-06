@@ -20,6 +20,7 @@ import Facultysalary from "./Pages/Admin/Facultysalary";
 import Studentpayment from "./Pages/Admin/Studentpayment";
 import Studentresult from "./Pages/Admin/Studentresult";
 import Classes from "./Pages/Admin/Classes";
+import StudentPage from "./Pages/student";
 
 const App: React.FC = () => {
   return (
@@ -35,7 +36,7 @@ const App: React.FC = () => {
           <Route path="/studentmarks" element={<Studentmarks />} />
           <Route path="/exam" element={<Exam />} />
           <Route path="/class" element={<Classes />} />
-          <Route path="/students" element={<Students />} />
+          <Route path="/students" element={<StudentPage />} />
           <Route path="/facultysalary" element={<Facultysalary />} />
           <Route path="/studentpayment" element={<Studentpayment />} />
           <Route path="/faculties" element={<Teachers />} />
