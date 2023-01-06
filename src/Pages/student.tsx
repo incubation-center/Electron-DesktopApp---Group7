@@ -103,6 +103,7 @@ const StudentPage = () => {
     } as StudentInput;
     if (!nameForm || !emailForm) {
       alert("Please fill all the fields");
+      return;
     }
 
     if (idForm) {
@@ -110,6 +111,7 @@ const StudentPage = () => {
     } else {
       if (!data.password || data.password.length < 6) {
         alert("Password should be at least 6 characters");
+        return;
       }
       const res = await createStudent(data);
     }
