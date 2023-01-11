@@ -1,3 +1,28 @@
+export interface TokenPayload {
+  exp: number;
+  email: string;
+  role: string;
+  userId: number;
+  schoolId: number;
+  jti?: string;
+}
+
+export interface CreateStudentInputDto {
+  name: string;
+  email: string;
+  phone: string;
+  address: string;
+  password: string;
+}
+
+export interface StudentAttendance {
+  subject: string;
+  total: number;
+  present: number;
+  absent: number;
+  leave: number;
+}
+
 /**
  * Model User
  *
@@ -47,21 +72,15 @@ export type School = {
  */
 export type Student = {
   id: number;
-  name: string;
+  firstname: string;
+  lastname: string;
+  gender: GenderEnumType;
+  image: string | null;
   email: string;
   phone: string | null;
   address: string | null;
-  password: string | null;
-  schoolId: number | null;
-  userId: number | null;
-};
-
-export type StudentInput = {
-  name: string;
-  email: string;
-  phone: string | null;
-  address: string | null;
-  password: string;
+  schoolId: number;
+  userId: number;
 };
 
 /**
@@ -70,22 +89,16 @@ export type StudentInput = {
  */
 export type Teacher = {
   id: number;
-  name: string;
+  firstname: string;
+  lastname: string;
+  gender: GenderEnumType;
+  image: string | null;
   email: string;
   phone: string | null;
   address: string | null;
-  password: string | null;
   userId: number;
   schoolId: number;
 };
-
-export type Teacherinput = {
-  name: string;
-  email: string;
-  phone: string | null;
-  address: string | null;
-  password: string;
-}
 
 /**
  * Model Class
@@ -94,7 +107,7 @@ export type Teacherinput = {
 export type Class = {
   id: number;
   name: string;
-  section: string;
+  description: string | null;
   schoolId: number;
 };
 
@@ -142,12 +155,12 @@ export type Result = {
 export type Attendance = {
   id: number;
   date: Date;
-  status: string | null;
-  attendanceType: AttendanecEnumType;
-  teacherId: number;
-  subjectId: number;
-  schoolId: number;
-  studentId: number;
+  attendanceType: AttendanceEnumType;
+  description: string | null;
+  teacherId: number | null;
+  subjectId: number | null;
+  schoolId: number | null;
+  studentId: number | null;
 };
 
 /**
@@ -170,8 +183,8 @@ export type Payment = {
   date: Date;
   amount: number;
   schoolId: number;
-  studentId: number;
-  feeId: number;
+  studentId: number | null;
+  feeId: number | null;
 };
 
 /**
@@ -203,9 +216,9 @@ export type Event = {
   textColor: string | null;
   image: string | null;
   description: string | null;
-  subjectId: number;
-  teacherId: number;
-  studentId: number;
+  subjectId: number | null;
+  teacherId: number | null;
+  studentId: number | null;
   schoolId: number;
 };
 
@@ -231,6 +244,7 @@ export type Message = {
   email: string;
   phone: string;
   message: string;
+  userId: number | null;
   schoolId: number;
 };
 
@@ -252,14 +266,21 @@ export type Setting = {
 // Based on
 // https://github.com/microsoft/TypeScript/issues/3192#issuecomment-261720275
 
-export const AttendanecEnumType: {
+export const AttendanceEnumType: {
   present: "present";
   absent: "absent";
   leave: "leave";
 };
 
-export type AttendanecEnumType =
-  typeof AttendanecEnumType[keyof typeof AttendanecEnumType];
+export type AttendanceEnumType =
+  typeof AttendanceEnumType[keyof typeof AttendanceEnumType];
+
+export const GenderEnumType: {
+  male: "male";
+  female: "female";
+};
+
+export type GenderEnumType = typeof GenderEnumType[keyof typeof GenderEnumType];
 
 export const RoleEnumType: {
   admin: "admin";
@@ -268,25 +289,3 @@ export const RoleEnumType: {
 };
 
 export type RoleEnumType = typeof RoleEnumType[keyof typeof RoleEnumType];
-
-/**
- * Model Auth
- *
- */
-
-export type AuthLogin = {
-  email: string;
-  password: string;
-};
-
-export type AuthRegister = {
-  email: string;
-  password: string;
-  name: string;
-};
-
-export interface MenuBarType {
-  src: string;
-  path: string;
-  title: string;
-}
