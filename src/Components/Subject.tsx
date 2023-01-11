@@ -12,6 +12,7 @@ import {
 } from "@/services/Subject";
 // import { getClasses } from "@/services/class";
 import { getTeachers } from "@/services/teacher";
+import { getAllClasses } from "@/services/class";
 
 const data = [
   {
@@ -84,7 +85,7 @@ function SubjectPage() {
       console.log(res);
       setSubjects(res);
     });
-    // setClasses().then((res) => setClasses(res));
+    getAllClasses().then((res) => setClasses(res));
     getTeachers().then((res) => setTeachers(res));
     return () => {};
   }, []);
@@ -227,11 +228,12 @@ function SubjectPage() {
                       defaultValue={classIdInput}
                       onChange={(e) => setClassIdInput(+e.target.value)}
                     >
-                      {classes.map((c) => (
-                        <option value={c.id}>{c.name}</option>
+                      {classes.map((c, i) => (
+                        <option key={i} value={c.id}>
+                          {c.name}
+                        </option>
                       ))}
                     </select>
-                   
                   </div>
                   <div className="w-full md:w-1/2 px-3">
                     <label className="block uppercase tracking-wide text-gray-500 text-3 font-bold mb-2">
@@ -241,8 +243,10 @@ function SubjectPage() {
                       defaultValue={teacherIdInput}
                       onChange={(e) => setTeacherIdInput(+e.target.value)}
                     >
-                      {teachers.map((t) => (
-                        <option value={t.id}>{t.name}</option>
+                      {teachers.map((t, i) => (
+                        <option key={i} value={t.id}>
+                          {t.name}
+                        </option>
                       ))}
                     </select>
                   </div>

@@ -74,9 +74,18 @@ export type Teacher = {
   email: string;
   phone: string | null;
   address: string | null;
+  password: string | null;
   userId: number;
   schoolId: number;
 };
+
+export type Teacherinput = {
+  name: string;
+  email: string;
+  phone: string | null;
+  address: string | null;
+  password: string;
+}
 
 /**
  * Model Class
@@ -275,3 +284,9 @@ export type AuthRegister = {
   password: string;
   name: string;
 };
+
+export interface MenuBarType {
+  src: string;
+  path: string;
+  title: string;
+}

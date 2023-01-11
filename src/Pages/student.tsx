@@ -23,13 +23,13 @@ const customStyles = {
 
 const StudentPage = () => {
   const columns = [
-    {
-      title: "id",
-      dataIndex: "id",
-      key: "id",
-      width: 50,
-      rowKey: "id",
-    },
+    // {
+    //   title: "id",
+    //   dataIndex: "id",
+    //   key: "id",
+    //   width: 50,
+    //   rowKey: "id",
+    // },
     {
       title: "name",
       dataIndex: "name",
@@ -52,6 +52,12 @@ const StudentPage = () => {
       title: "email",
       dataIndex: "email",
       key: "email",
+      width: 300,
+    },
+    {
+      title: "Address",
+      dataIndex: "address",
+      key: "Address",
       width: 300,
     },
     {
@@ -150,7 +156,7 @@ const StudentPage = () => {
   const [passwordForm, setPasswordForm] = React.useState<string>("");
 
   return (
-    <div>
+    <div className="p-10">
       <div className="flex justify-between">
         <div className="py-4 px-2 ">Students Managements</div>
         <button

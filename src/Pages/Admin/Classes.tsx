@@ -1,40 +1,92 @@
-
 import TableCustom from "@/Components/TableCustom";
-import { createClass, getAllClasses, updateClassByid } from "@/services/class";
+import {
+  createClass,
+  deleteClassByid,
+  getAllClasses,
+  updateClassByid,
+} from "@/services/class";
 import { Class } from "@/types";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Modal from "react-modal";
-const Classes = () => {
+const Classespage = () => {
   const columns = [
     {
       title: "Name",
       dataIndex: "name",
-      rowKey: "name",
+      key: "name",
       width: 200,
     },
     {
       title: "Section",
       dataIndex: "section",
-      rowKey: "section",
+      key: "section",
       width: 200,
     },
     {
-      title: "SchoolId",
-      dataIndex: "schoolid",
-      rowKey: "schoolid",
-      width: 200,
+      title: "Opperation",
+      dataIndex: "",
+      key: "opperations",
+      render: (r: Class) => (
+        <div className="space-x-2">
+          <button onClick={() => onsetFormclass(r)} className="p-1 bg-blue-400 rounded-md">Edit</button>
+          <button onClick={() => ondeletClass(r.id)} className="p-1 bg-red-400 rounded-md">Delete</button>
+        </div>
+      ),
     },
   ];
 
-  const [classs,setClasses] = useState<Class[]>()
+  useEffect(() => {
+    getAllClasses().then((res) => {
+      console.log(res);
+      setClasses(res)
+      
+    })
+  },[])
 
-//   open and close the modal
+  const onsetAddclassform = () => {
+    setClassNmae("");
+    setSection("");
+    openModal();
+  };
+  const onsetFormclass = (classes: Class) => {
+    setClassNmae(classes.name);
+    setSection(classes.section);
+    setClassid(classes.id)
+    openModal();
+  };
+  const ondeletClass = async (id: number) => {
+    await deleteClassByid(id);
+    const newClasses = classs?.filter((r) => r.id != id);
+    setClasses(newClasses);
+  };
+
+  const onAddClass = async () => {
+    if (!className || !section) {
+      console.log("Input missing");
+      return;
+    }
+    let data = {
+      name: className,
+      section: section,
+    } as Class;
+    if (classId) {
+      // await updateClassByid
+      await updateClassByid(classId, data);
+    } else {
+      await createClass(data);
+    }
+    const res = await getAllClasses();
+    setClasses(res);
+    closeModal();
+  };
+
+  const [classs, setClasses] = useState<Class[]>();
+  //   open and close the modal
   const [modalIsOpen, setIsOpen] = useState(false);
-//   form state
-const [classId, setClassid] = useState<number>();
-const [className, setClassNmae] = useState<string>();
-const [section, Setsection] = useState<string>();
-
+  //   form state
+  const [classId, setClassid] = useState<number>();
+  const [className, setClassNmae] = useState<string>();
+  const [section, setSection] = useState<string>();
   const customStyles = {
     content: {
       top: "50%",
@@ -47,26 +99,6 @@ const [section, Setsection] = useState<string>();
   const closeModal = () => {
     setIsOpen(false);
   };
-  const onAddClass = async () => {
-    if (!className || !section ) {
-      console.log("Input missing");
-      return;
-    }
-    let data = {
-      name: className,
-      section: section,
-    } as Class;
-    if (classId) {
-        // await updateClassByid
-      await updateClassByid(classId, data);
-    } else {
-      await createClass(data);
-    }
-    const res = await getAllClasses();
-    setClasses(res);
-    closeModal();
-  };
-
 
   return (
     <div className="p-10">
@@ -75,7 +107,7 @@ const [section, Setsection] = useState<string>();
           Sattandance: sub total ClassId teacherId schoolId
         </p>
         <button
-        //   onClick={onSetAddFormSubject}
+            onClick={onsetAddclassform}
           type="button"
           className="bg-gray-400 py-1 px-4 border rounded-md mb-6 hover:bg-gray-500 hover:text-slate-300 focus:bg-gray-500"
         >
@@ -107,8 +139,8 @@ const [section, Setsection] = useState<string>();
                       className="appearance-none block w-full bg-gray-100 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
                       type="text"
                       placeholder="class"
-                    //   defaultValue={subjectName}
-                    //   onChange={(e) => setSubjectName(e.target.value)}
+                        defaultValue={className}
+                        onChange={(e) => setClassNmae(e.target.value)}
                     />
                   </div>
                 </div>
@@ -118,14 +150,14 @@ const [section, Setsection] = useState<string>();
                       className="block uppercase tracking-wide text-gray-500 text-3 font-bold mb-2"
                       htmlFor="grid-password"
                     >
-                      Section 
+                      Section
                     </label>
                     <input
                       className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
                       type="text"
                       placeholder="section"
-                    //   defaultValue={code}
-                    //   onChange={(e) => setCode(e.target.value)}
+                        defaultValue={section}
+                        onChange={(e) => setSection(e.target.value)}
                     />
                   </div>
                 </div>
@@ -150,7 +182,7 @@ const [section, Setsection] = useState<string>();
       </Modal>
       <TableCustom data={classs} columns={columns} />
     </div>
-  )
+  );
 };
 
-export default Classes;
+export default Classespage;

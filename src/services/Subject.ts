@@ -16,7 +16,7 @@ export const updateSubject = async (id: number, data: Subject) => {
 export const getAllSubjects = async () => {
   const res = await client.get("/subjects");
   if (res.status !== 200) throw new Error("Failed to fetch all subjects");
-  return res.data.subjects as Subject[];
+  return res.data as Subject[];
 };
 
 export const getSubjectById = async (id: number) => {
