@@ -1,3 +1,25 @@
+/**
+ * Model Auth
+ *
+ */
+
+export type AuthLogin = {
+  email: string;
+  password: string;
+};
+
+export type AuthRegister = {
+  email: string;
+  password: string;
+  name: string;
+};
+
+export interface MenuBarType {
+  src: string;
+  path: string;
+  title: string;
+}
+
 export interface TokenPayload {
   exp: number;
   email: string;
@@ -7,8 +29,9 @@ export interface TokenPayload {
   jti?: string;
 }
 
-export interface CreateStudentInputDto {
-  name: string;
+export interface StudentInput {
+  firstname: string;
+  lastname: string;
   email: string;
   phone: string;
   address: string;
@@ -88,6 +111,8 @@ export type Student = {
  *
  */
 export type Teacher = {
+  name(name: any): unknown;
+  password: any;
   id: number;
   firstname: string;
   lastname: string;

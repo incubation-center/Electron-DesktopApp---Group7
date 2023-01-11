@@ -2,9 +2,15 @@ import TableCustom from "@/Components/TableCustom";
 
 const columns = [
   {
-    title: "Name",
-    dataIndex: "Name",
-    key: "Name",
+    title: "First name",
+    dataIndex: "firstname",
+    key: "firstname",
+    width: 180,
+  },
+  {
+    title: "Last name",
+    dataIndex: "lastname",
+    key: "lastname",
     width: 180,
   },
   {
@@ -52,9 +58,9 @@ const Students = () => {
   return (
     <div className="p-10">
       <p className="mb-5">List all student : </p>
-      <TableCustom data={data} columns={columns}/>
+      <TableCustom data={data} columns={columns} />
     </div>
-  )
-}
+  );
+};
 
-export default Students
+export default Students;

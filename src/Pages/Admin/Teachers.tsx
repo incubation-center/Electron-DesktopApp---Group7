@@ -1,7 +1,12 @@
 import TableCustom from "@/Components/TableCustom";
-import { getTeachers, updateTeacherByid,createTeacher, deleteTeacherByid } from "@/services/teacher";
+import {
+  getTeachers,
+  updateTeacherByid,
+  createTeacher,
+  deleteTeacherByid,
+} from "@/services/teacher";
 import { Teacher } from "@/types";
-import {  useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import Modal from "react-modal";
 
 // const data = [
@@ -23,9 +28,15 @@ import Modal from "react-modal";
 const TeachersPage = () => {
   const column = [
     {
-      title: "Name",
-      dataIndex: "name",
-      key: "Name",
+      title: "First name",
+      dataIndex: "firstname",
+      key: "firstname",
+      width: 180,
+    },
+    {
+      title: "Last name",
+      dataIndex: "lastname",
+      key: "lastname",
       width: 180,
     },
     {
@@ -98,47 +109,47 @@ const TeachersPage = () => {
       password: passwordform,
       phone: phoneform,
       address: addressform,
-    } as Teacher;
-    if(!nameform || emailform) {
+    } as unknown as Teacher;
+    if (!nameform || emailform) {
       alert("Please fill all credentail and recheck !!!");
       return;
     }
-    if(idForm){
-      const res = await updateTeacherByid(idForm , data);
-    } else{
-      if(!data.password || data.password.length < 6){
-        alert("Password should be at least 6 characters ")
+    if (idForm) {
+      const res = await updateTeacherByid(idForm, data);
+    } else {
+      if (!data.password || data.password.length < 6) {
+        alert("Password should be at least 6 characters ");
         return;
       }
-      const res = await createTeacher(data)
+      const res = await createTeacher(data);
     }
     const teacherlist = await getTeachers();
     SetTeacher(teacherlist);
-    closeModal()
+    closeModal();
   };
 
-  const onAddteacher =async () => {
+  const onAddteacher = async () => {
     setNameform("");
-    setPhoneform("")
-    setEmailform("")
-    setAddressform("")
-    setIdForm(0)
-    openModal()
-  }
-  const oneditTeacher =async (d:Teacher) => {
-    setNameform(d.name);
+    setPhoneform("");
+    setEmailform("");
+    setAddressform("");
+    setIdForm(0);
+    openModal();
+  };
+  const oneditTeacher = async (d: Teacher) => {
+    // setNameform(d.name);
     setPhoneform(d.phone || "");
     setEmailform(d.email);
     setAddressform(d.address || "");
     setIdForm(d.id);
-    openModal()
-  }
+    openModal();
+  };
 
   const ondelteTeacher = async (d: Teacher) => {
-    const res = await deleteTeacherByid(d.id)
-    // const newTeacher = teachers.filter((t) => t.id !== <res className="id"></res> );
-    // SetTeacher(newTeacher)
-  }
+    const res = await deleteTeacherByid(d.id);
+    const newTeacher = teachers.filter((t) => t.id !== res.id );
+    SetTeacher(newTeacher)
+  };
 
   // form data
   const [idForm, setIdForm] = useState<number>();

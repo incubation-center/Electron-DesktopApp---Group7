@@ -9,7 +9,7 @@ import {
   deleteSubjectById,
   getAllSubjects,
   updateSubject,
-} from "@/services/Subject";
+} from "@/services/subject";
 // import { getClasses } from "@/services/class";
 import { getTeachers } from "@/services/teacher";
 import { getAllClasses } from "@/services/class";
@@ -245,7 +245,7 @@ function SubjectPage() {
                     >
                       {teachers.map((t, i) => (
                         <option key={i} value={t.id}>
-                          {t.name}
+                          {t.firstname} {t.lastname}
                         </option>
                       ))}
                     </select>

@@ -31,10 +31,16 @@ const StudentPage = () => {
     //   rowKey: "id",
     // },
     {
-      title: "name",
-      dataIndex: "name",
-      key: "name",
-      width: 300,
+      title: "First name",
+      dataIndex: "firstname",
+      key: "firstname",
+      width: 180,
+    },
+    {
+      title: "Last name",
+      dataIndex: "lastname",
+      key: "lastname",
+      width: 180,
     },
     // {
     //   title: "gender",
@@ -67,6 +73,12 @@ const StudentPage = () => {
       width: 300,
       render: (r: Student) => (
         <div className="space-x-2 flex justify-center">
+          <button
+            onClick={() => onShowEditForm(r)} // '/student-info?id=1293'
+            className="p-1 bg-green-400 hover:bg-green-300 duration-500 rounded-md"
+          >
+            View
+          </button>
           <button
             onClick={() => onShowEditForm(r)}
             className="p-1 bg-blue-400 hover:bg-blue-300 duration-500 rounded-md"
@@ -101,13 +113,14 @@ const StudentPage = () => {
   // Form State
   const onSubmitForm = async () => {
     let data = {
-      name: nameForm,
+      firstname: firstNameForm,
+      lastname: lastNameForm,
       phone: phoneForm,
       address: addressForm,
       email: emailForm,
       password: passwordForm,
     } as StudentInput;
-    if (!nameForm || !emailForm) {
+    if (!firstNameForm || !lastNameForm || !emailForm) {
       alert("Please fill all the fields");
       return;
     }
@@ -126,7 +139,8 @@ const StudentPage = () => {
     closeModal();
   };
   const onShowEditForm = (r: Student) => {
-    setNameForm(r.name);
+    setFirstNameForm(r.firstname);
+    setLastNameForm(r.lastname);
     setPhoneForm(r.phone || "");
     setAddressForm(r.address || "");
     setEmailForm(r.email);
@@ -135,7 +149,8 @@ const StudentPage = () => {
   };
 
   const onSetAddNewForm = () => {
-    setNameForm("");
+    setFirstNameForm("");
+    setLastNameForm("");
     setPhoneForm("");
     setAddressForm("");
     setEmailForm("");
@@ -149,7 +164,8 @@ const StudentPage = () => {
   };
   // Form State
   const [idForm, setIdForm] = React.useState<number>();
-  const [nameForm, setNameForm] = React.useState<string>("");
+  const [firstNameForm, setFirstNameForm] = React.useState<string>("");
+  const [lastNameForm, setLastNameForm] = React.useState<string>("");
   const [phoneForm, setPhoneForm] = React.useState<string>("");
   const [addressForm, setAddressForm] = React.useState<string>("");
   const [emailForm, setEmailForm] = React.useState<string>("");
@@ -186,12 +202,26 @@ const StudentPage = () => {
         {/* Form */}
         <div className="flex flex-col gap-y-4">
           <div className="flex flex-col gap-y-1">
-            <label className="text-sm font-medium text-gray-500">Name</label>
+            <label className="text-sm font-medium text-gray-500">
+              First Name
+            </label>
             <input
               type="text"
-              name="name"
-              value={nameForm}
-              onChange={(e) => setNameForm(e.target.value)}
+              name="firstname"
+              value={firstNameForm}
+              onChange={(e) => setFirstNameForm(e.target.value)}
+              className="border border-gray-300 rounded-lg px-2 py-1"
+            />
+          </div>
+          <div className="flex flex-col gap-y-1">
+            <label className="text-sm font-medium text-gray-500">
+              Last Name
+            </label>
+            <input
+              type="text"
+              name="lastname"
+              value={lastNameForm}
+              onChange={(e) => setLastNameForm(e.target.value)}
               className="border border-gray-300 rounded-lg px-2 py-1"
             />
           </div>
