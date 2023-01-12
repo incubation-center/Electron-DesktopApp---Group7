@@ -1,8 +1,6 @@
 import TableCustom from "@/Components/TableCustom";
 import { Class, RoleEnumType, Subject, Teacher } from "@/types";
 import { useEffect, useState } from "react";
-import { getExams } from "@/services/exam";
-import { Exam } from "@/types";
 import Modal from "react-modal";
 import {
   createSubject,
@@ -17,10 +15,10 @@ import { getAllClasses } from "@/services/class";
 import { userInfo } from "@/services/auth";
 
 function SubjectPage() {
+  const user = userInfo();
   const [subjects, setSubjects] = useState<any[]>();
   const [columnTable, setColumnTable] = useState<any[]>([]);
   useEffect(() => {
-    const user = userInfo();
     const columnsAdmin = [
       {
         title: "Name",
@@ -82,41 +80,14 @@ function SubjectPage() {
         width: 150,
       },
       {
-        title: "ClassId",
-        dataIndex: "classId",
-        rowKey: "classId",
+        title: "Class Name",
+        dataIndex: "className",
+        rowKey: "className",
         width: 150,
-      },
-      {
-        title: "TeacherId",
-        dataIndex: "teacherId",
-        rowKey: "teacherId",
-        width: 150,
-      },
-      {
-        title: "Operations",
-        dataIndex: "",
-        key: "operations",
-        render: (r: Subject) => (
-          <div className="space-x-2">
-            <button
-              onClick={() => onSetFormSubject(r)}
-              className="p-1 bg-blue-400 rounded-md"
-            >
-              Edit
-            </button>
-            <button
-              onClick={() => onDeleteSubject(r.id)}
-              className="p-1 bg-red-400 rounded-md"
-            >
-              Delete
-            </button>
-          </div>
-        ),
       },
     ];
     switch (user.role) {
-      case RoleEnumType.admin:
+      case "admin":
         setColumnTable(columnsAdmin);
         getAllSubjects().then((res) => {
           console.log(res);
@@ -125,7 +96,7 @@ function SubjectPage() {
         getAllClasses().then((res) => setClasses(res));
         getTeachers().then((res) => setTeachers(res));
         break;
-      case RoleEnumType.teacher:
+      case "teacher":
         setColumnTable(columnsTeacher);
         getAllSubjectsByTeacher().then((res) => {
           setSubjects(res);
@@ -210,13 +181,15 @@ function SubjectPage() {
         <p className="mb-5">
           Sattandance: sub total ClassId teacherId schoolId
         </p>
-        <button
-          onClick={onSetAddFormSubject}
-          type="button"
-          className="bg-gray-400 py-1 px-4 border rounded-md mb-6 hover:bg-gray-500 hover:text-slate-300 focus:bg-gray-500"
-        >
-          Add
-        </button>
+        {user.role == "admin" && (
+          <button
+            onClick={onSetAddFormSubject}
+            type="button"
+            className="bg-gray-400 py-1 px-4 border rounded-md mb-6 hover:bg-gray-500 hover:text-slate-300 focus:bg-gray-500"
+          >
+            Add
+          </button>
+        )}
       </div>
       <Modal
         isOpen={modalIsOpen}
