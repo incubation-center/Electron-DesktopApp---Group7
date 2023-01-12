@@ -13,6 +13,7 @@ import {
 // import { getClasses } from "@/services/class";
 import { getTeachers } from "@/services/teacher";
 import { getAllClasses } from "@/services/class";
+import Paginition from "./Paginition";
 
 const data = [
   {
@@ -271,6 +272,7 @@ function SubjectPage() {
         </div>
       </Modal>
       <TableCustom data={subjects} columns={columns} />
+      <Paginition />
     </div>
   );
 }
