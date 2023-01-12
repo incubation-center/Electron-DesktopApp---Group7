@@ -1,4 +1,4 @@
-import { Subject } from "@/types";
+import { Subject, TeacherSubject } from "@/types";
 import { client } from "@/utils/http";
 
 export const createSubject = async (data: Subject) => {
@@ -29,4 +29,10 @@ export const deleteSubjectById = async (id: number) => {
   const res = await client.delete(`/subject/${id}`);
   if (res.status !== 200) throw new Error("Failed to delete subject");
   return res.data as Subject;
+};
+
+export const getAllSubjectsByTeacher = async () => {
+  const res = await client.get("/subjects");
+  if (res.status !== 200) throw new Error("Failed to fetch all subjects");
+  return res.data as TeacherSubject[];
 };

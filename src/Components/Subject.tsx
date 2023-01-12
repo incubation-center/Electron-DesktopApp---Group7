@@ -1,5 +1,5 @@
 import TableCustom from "@/Components/TableCustom";
-import { Class, Subject, Teacher } from "@/types";
+import { Class, RoleEnumType, Subject, Teacher } from "@/types";
 import { useEffect, useState } from "react";
 import { getExams } from "@/services/exam";
 import { Exam } from "@/types";
@@ -8,85 +8,131 @@ import {
   createSubject,
   deleteSubjectById,
   getAllSubjects,
+  getAllSubjectsByTeacher,
   updateSubject,
 } from "@/services/subject";
 // import { getClasses } from "@/services/class";
 import { getTeachers } from "@/services/teacher";
 import { getAllClasses } from "@/services/class";
-
-const data = [
-  {
-    subject: "Database Management",
-    code: 50,
-    classId: 25,
-    teacherId: 25,
-    schoolId: 90,
-  },
-  {
-    subject: "Computer Science",
-    code: 50,
-    classId: 45,
-    teacherId: 5,
-    schoolId: 90,
-  },
-];
+import { userInfo } from "@/services/auth";
 
 function SubjectPage() {
-  const columns = [
-    {
-      title: "Name",
-      dataIndex: "name",
-      rowKey: "name",
-      width: 200,
-    },
-    {
-      title: "Code",
-      dataIndex: "code",
-      rowKey: "code",
-      width: 150,
-    },
-    {
-      title: "ClassId",
-      dataIndex: "classId",
-      rowKey: "classId",
-      width: 150,
-    },
-    {
-      title: "TeacherId",
-      dataIndex: "teacherId",
-      rowKey: "teacherId",
-      width: 150,
-    },
-    {
-      title: "Operations",
-      dataIndex: "",
-      key: "operations",
-      render: (r: Subject) => (
-        <div className="space-x-2">
-          <button
-            onClick={() => onSetFormSubject(r)}
-            className="p-1 bg-blue-400 rounded-md"
-          >
-            Edit
-          </button>
-          <button
-            onClick={() => onDeleteSubject(r.id)}
-            className="p-1 bg-red-400 rounded-md"
-          >
-            Delete
-          </button>
-        </div>
-      ),
-    },
-  ];
-  const [subjects, setSubjects] = useState<Subject[]>();
+  const [subjects, setSubjects] = useState<any[]>();
+  const [columnTable, setColumnTable] = useState<any[]>([]);
   useEffect(() => {
-    getAllSubjects().then((res) => {
-      console.log(res);
-      setSubjects(res);
-    });
-    getAllClasses().then((res) => setClasses(res));
-    getTeachers().then((res) => setTeachers(res));
+    const user = userInfo();
+    const columnsAdmin = [
+      {
+        title: "Name",
+        dataIndex: "name",
+        rowKey: "name",
+        width: 200,
+      },
+      {
+        title: "Code",
+        dataIndex: "code",
+        rowKey: "code",
+        width: 150,
+      },
+      {
+        title: "ClassId",
+        dataIndex: "classId",
+        rowKey: "classId",
+        width: 150,
+      },
+      {
+        title: "TeacherId",
+        dataIndex: "teacherId",
+        rowKey: "teacherId",
+        width: 150,
+      },
+      {
+        title: "Operations",
+        dataIndex: "",
+        key: "operations",
+        render: (r: Subject) => (
+          <div className="space-x-2">
+            <button
+              onClick={() => onSetFormSubject(r)}
+              className="p-1 bg-blue-400 rounded-md"
+            >
+              Edit
+            </button>
+            <button
+              onClick={() => onDeleteSubject(r.id)}
+              className="p-1 bg-red-400 rounded-md"
+            >
+              Delete
+            </button>
+          </div>
+        ),
+      },
+    ];
+    const columnsTeacher = [
+      {
+        title: "Name",
+        dataIndex: "name",
+        rowKey: "name",
+        width: 200,
+      },
+      {
+        title: "Code",
+        dataIndex: "code",
+        rowKey: "code",
+        width: 150,
+      },
+      {
+        title: "ClassId",
+        dataIndex: "classId",
+        rowKey: "classId",
+        width: 150,
+      },
+      {
+        title: "TeacherId",
+        dataIndex: "teacherId",
+        rowKey: "teacherId",
+        width: 150,
+      },
+      {
+        title: "Operations",
+        dataIndex: "",
+        key: "operations",
+        render: (r: Subject) => (
+          <div className="space-x-2">
+            <button
+              onClick={() => onSetFormSubject(r)}
+              className="p-1 bg-blue-400 rounded-md"
+            >
+              Edit
+            </button>
+            <button
+              onClick={() => onDeleteSubject(r.id)}
+              className="p-1 bg-red-400 rounded-md"
+            >
+              Delete
+            </button>
+          </div>
+        ),
+      },
+    ];
+    switch (user.role) {
+      case RoleEnumType.admin:
+        setColumnTable(columnsAdmin);
+        getAllSubjects().then((res) => {
+          console.log(res);
+          setSubjects(res);
+        });
+        getAllClasses().then((res) => setClasses(res));
+        getTeachers().then((res) => setTeachers(res));
+        break;
+      case RoleEnumType.teacher:
+        setColumnTable(columnsTeacher);
+        getAllSubjectsByTeacher().then((res) => {
+          setSubjects(res);
+        });
+
+        break;
+    }
     return () => {};
   }, []);
   const [modalIsOpen, setIsOpen] = useState(false);
@@ -270,7 +316,7 @@ function SubjectPage() {
           {/* ....... end content ....... */}
         </div>
       </Modal>
-      <TableCustom data={subjects} columns={columns} />
+      <TableCustom data={subjects} columns={columnTable} />
     </div>
   );
 }

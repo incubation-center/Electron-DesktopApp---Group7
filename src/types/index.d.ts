@@ -29,6 +29,13 @@ export interface TokenPayload {
   jti?: string;
 }
 
+export interface TeacherSubject {
+  id: number;
+  className: string;
+  name: string;
+  code: string;
+}
+
 export interface StudentInput {
   firstname: string;
   lastname: string;
