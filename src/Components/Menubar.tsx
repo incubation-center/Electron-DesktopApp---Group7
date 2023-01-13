@@ -30,7 +30,7 @@ const MenuBar = ({ children }: childrenProps) => {
           path: "/faculties",
           src: "teacher",
         },
-        ["teacher"].includes(userRole) && {
+        ["teacher","student"].includes(userRole) && {
           title: "Student Results",
           path: "/studentresult",
           src: "teacher",

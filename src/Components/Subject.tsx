@@ -8,7 +8,7 @@ import {
   getAllSubjects,
   getAllSubjectsByTeacher,
   updateSubject,
-} from "@/services/subject";
+} from "@/services/Subject";
 // import { getClasses } from "@/services/class";
 import { getTeachers } from "@/services/teacher";
 import { getAllClasses } from "@/services/class";
@@ -101,7 +101,6 @@ function SubjectPage() {
         getAllSubjectsByTeacher().then((res) => {
           setSubjects(res);
         });
-
         break;
     }
     return () => {};

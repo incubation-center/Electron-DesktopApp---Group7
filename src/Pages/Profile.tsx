@@ -1,8 +1,10 @@
 import Avatar from "@/Components/Avatar";
+import { userInfo } from "@/services/auth";
 import { getUserProfile } from "@/services/profile";
 import { useEffect, useState } from "react";
 
 const Profile = () => {
+  const user = userInfo();
   const [showModal, setShowModal] = useState(false);
   const [userProfile, setUserProfile] = useState<any>({});
   useEffect(() => {
@@ -140,10 +142,21 @@ const Profile = () => {
             <div className="bg-white px-6 py-8 rounded shadow-md text-black w-full">
               <h1 className="mb-8 text-3xl text-center">Your Profile</h1>
               <div className="grid grid-cols-2">
-                <h3 className="pl-1 pb-2">Name : </h3>
-                <div className="block border border-grey-light w-full rounded mb-4 pl-3">
-                  {userProfile.name}
-                </div>
+                {user.role == "admin" ? (
+                  <>
+                    <h3 className="pl-1 pb-2">Name : </h3>
+                    <div className="block border border-grey-light w-full rounded mb-4 pl-3">
+                      {userProfile.name}
+                    </div>
+                  </>
+                ) : 
+                <>
+                  <h3 className="pl-1 pb-2">Name : </h3>
+                  <div className="flex space-x-2 border border-grey-light rounded mb-4 pl-3 ">
+                      <div>{userProfile.firstname}</div>
+                      <div>{userProfile.lastname}</div>
+                  </div>
+                </>}
                 <h3 className="pl-1 pb-2">Email Address : </h3>
                 <div className="block border border-grey-light w-full rounded mb-4 pl-3">
                   {userProfile.email}
