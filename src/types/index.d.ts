@@ -137,6 +137,8 @@ export type Teacher = {
  *
  */
 export type Class = {
+  [x: string]: SetStateAction<string | undefined>;
+  section(section: any): unknown;
   id: number;
   name: string;
   description: string | null;

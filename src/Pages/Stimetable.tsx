@@ -76,7 +76,7 @@ const columns = [
     width: 100,
   },
 ];
-function Stimetable() {
+function timetable() {
   return (
     <div className="p-10">
       <p className="mb-5">Exam page!!!! Exam Sub Marks Result</p>
@@ -85,4 +85,4 @@ function Stimetable() {
   );
 }
 
-export default Stimetable;
+export default timetable;

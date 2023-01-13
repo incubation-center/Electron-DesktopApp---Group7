@@ -9,22 +9,6 @@ import { Teacher } from "@/types";
 import { useEffect, useState } from "react";
 import Modal from "react-modal";
 
-// const data = [
-//   {
-//     Name: "Teacher name1",
-//     Email: "gamil@teacher1.com",
-//     Phone: "012 345 678",
-//     Address: "Address1",
-//     schoolId: 90,
-//   },
-//   {
-//     Name: "Teacher name2",
-//     Email: "gamil@teacher2.com",
-//     Phone: "096 376 766",
-//     Address: "Address2",
-//     schoolId: 90,
-//   },
-// ];
 const TeachersPage = () => {
   const column = [
     {

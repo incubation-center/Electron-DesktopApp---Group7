@@ -20,7 +20,7 @@ import Facultysalary from "./Pages/Admin/Facultysalary";
 import Studentpayment from "./Pages/Admin/Studentpayment";
 import Studentresult from "./Pages/Admin/Studentresult";
 import Classes from "./Pages/Admin/Classes";
-import StudentPage from "./Pages/student";
+import StudentPage from "./Pages/Admin/student";
 
 const App: React.FC = () => {
   return (
@@ -33,7 +33,7 @@ const App: React.FC = () => {
           <Route path="/generatereport" element={<Generatereport />} />
           <Route path="/attendancestudent" element={<Attandance />} />
           <Route path="/studentattendace" element={<Studentattendance />} />
-          <Route path="/studentmarks" element={<Studentmarks />} />
+          <Route path="/studentresult" element={<Studentmarks />} />
           <Route path="/exam" element={<Exam />} />
           <Route path="/class" element={<Classes />} />
           <Route path="/students" element={<StudentPage />} />
@@ -44,7 +44,7 @@ const App: React.FC = () => {
           <Route path="/profile" element={<Profile />} />
           <Route path="/subjects" element={<Subject />} />
           <Route path="/attendances" element={<Sattandance />} />
-          <Route path="/s-timetable" element={<Stimetable />} />
+          <Route path="/timetable" element={<Stimetable />} />
           <Route path="/riseissues" element={<Riseissue />} />
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<Signup />} />

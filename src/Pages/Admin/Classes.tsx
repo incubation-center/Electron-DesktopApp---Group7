@@ -50,7 +50,7 @@ const Classespage = () => {
   };
   const onsetFormclass = (classes: Class) => {
     setClassNmae(classes.name);
-    setSection(classes.section);
+    setSection(classes.sections);
     setClassid(classes.id)
     openModal();
   };
@@ -61,14 +61,14 @@ const Classespage = () => {
   };
 
   const onAddClass = async () => {
-    if (!className || !section) {
+    if (!className || !sections) {
       console.log("Input missing");
       return;
     }
     let data = {
       name: className,
-      section: section,
-    } as Class;
+      section: sections,
+    } as unknown as Class;
     if (classId) {
       // await updateClassByid
       await updateClassByid(classId, data);
@@ -86,7 +86,7 @@ const Classespage = () => {
   //   form state
   const [classId, setClassid] = useState<number>();
   const [className, setClassNmae] = useState<string>();
-  const [section, setSection] = useState<string>();
+  const [sections, setSection] = useState<string>();
   const customStyles = {
     content: {
       top: "50%",
@@ -156,7 +156,7 @@ const Classespage = () => {
                       className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
                       type="text"
                       placeholder="section"
-                        defaultValue={section}
+                        defaultValue={sections}
                         onChange={(e) => setSection(e.target.value)}
                     />
                   </div>

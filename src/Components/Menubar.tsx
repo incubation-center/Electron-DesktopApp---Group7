@@ -30,7 +30,7 @@ const MenuBar = ({ children }: childrenProps) => {
           path: "/faculties",
           src: "teacher",
         },
-        ["teacher"].includes(userRole) && {
+        ["teacher","student"].includes(userRole) && {
           title: "Student Results",
           path: "/studentresult",
           src: "teacher",
@@ -40,22 +40,22 @@ const MenuBar = ({ children }: childrenProps) => {
           path: "/class",
           src: "course",
         },
-        ["teacher"].includes(userRole) && {
+        ["student"].includes(userRole) && {
           title: "Exams",
           path: "/exam",
           src: "course",
         },
-        ["teacher"].includes(userRole) && {
+        ["teacher", "student"].includes(userRole) && {
           title: "Time Table",
-          path: "/timetables",
+          path: "/timetable",
           src: "salary",
         },
         ["teacher", "student"].includes(userRole) && {
-          title: "Attendance",
+          title: "Attendance student",
           path: "/attendances",
           src: "Attendence",
         },
-        { title: "Rise Issues", path: "/riseissues", src: "issue" },
+        ["student"].includes(userRole) && { title: "Rise Issues", path: "/riseissues", src: "issue" },
         ["admin"].includes(userRole) && {
           title: "Faculty Salary",
           path: "/facultysalary",
