@@ -53,6 +53,21 @@ export interface StudentAttendance {
   leave: number;
 }
 
+export interface StudentExam {
+  id: number;
+  date: Date;
+  subject: string;
+  mark: Float;
+  result: string;
+}
+
+export interface SchoolExam {
+  id: number;
+  name: string;
+  date: Date;
+  subject: string;
+}
+
 /**
  * Model User
  *
