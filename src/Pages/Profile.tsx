@@ -1,11 +1,24 @@
 import Avatar from "@/Components/Avatar";
 import { userInfo } from "@/services/auth";
 import { getUserProfile } from "@/services/profile";
+import Modal from "react-modal";
 import { useEffect, useState } from "react";
 
 const Profile = () => {
   const user = userInfo();
-  const [showModal, setShowModal] = useState(false);
+  const [modalIsOpen, setIsOpen] = useState(false);
+  const customStyles = {
+    content: {
+      top: "100%",
+      left: "100%",
+    },
+  };
+  const openModal = () => {
+    setIsOpen(true);
+  };
+  const closeModal = () => {
+    setIsOpen(false);
+  };
   const [userProfile, setUserProfile] = useState<any>({});
   useEffect(() => {
     getUserProfile().then((res) => {
@@ -14,14 +27,13 @@ const Profile = () => {
     });
     return () => {};
   }, []);
-
   return (
     <div className="flex justify-center items-center mb-auto mt-20 w-screen">
       <div className="mr-10">
         <Avatar />
         <div className="flex items-center justify-center mt-10">
           <button
-            onClick={() => setShowModal(true)}
+            onClick={openModal}
             className="bg-blue-500 hover:bg-blue-700 text-white py-2 px-4 rounded inline-flex"
           >
             <svg
@@ -37,103 +49,108 @@ const Profile = () => {
             </svg>
             Edit
           </button>
-          {showModal ? (
+          <Modal
+            isOpen={modalIsOpen}
+            onRequestClose={closeModal}
+            style={customStyles}
+            ariaHideApp={false}
+          >
             <div className="justify-center items-center flex fixed inset-0 ">
               {/* ....... content ....... */}
-              <div className="bg-blue-300 w-96 rounded-xl">
+              <div className="bg-blue-300 w-6/12 rounded-xl">
                 {/* ....... body ....... */}
-                <div className="m-5">
+                <div className="m-10">
                   <div className="w-full max-w-lg">
-                    <div className="flex flex-wrap -mx-3 mb-6">
-                      <div className="w-full px-3">
-                        <label
-                          className="block uppercase tracking-wide text-gray-500 text-3 font-bold mb-2"
-                          htmlFor="grid-password"
-                        >
-                          Name
+                    <div className="flex flex-wrap -mx-3 mb-3">
+                      <div className="w-full md:w-1/2 px-3">
+                        <label className="block uppercase tracking-wide text-gray-500 text-3 font-bold mb-2">
+                          First Name
                         </label>
                         <input
                           className="appearance-none block w-full bg-gray-100 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-                          id="grid-password"
-                          type="password"
-                          value={userProfile.firstname}
-                          placeholder="Name"
-                        />
-                        <input
-                          className="appearance-none block w-full bg-gray-100 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-                          id="grid-password"
-                          type="password"
-                          value={userProfile.lastname}
-                          placeholder="Name"
+                          type="text"
+                          placeholder="First Name"
                         />
                       </div>
-                    </div>
-                    <div className="flex flex-wrap -mx-3 mb-6">
-                      <div className="w-full px-3">
-                        <label
-                          className="block uppercase tracking-wide text-gray-500 text-3 font-bold mb-2"
-                          htmlFor="grid-password"
-                        >
-                          Password
+                      <div className="w-full md:w-1/2 px-3">
+                        <label className="block uppercase tracking-wide text-gray-500 text-3 font-bold mb-2">
+                          First Name
                         </label>
                         <input
-                          className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-                          id="grid-password"
-                          type="password"
-                          placeholder="******************"
+                          className="appearance-none block w-full bg-gray-100 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+                          type="text"
+                          placeholder="First Name"
                         />
                       </div>
-                    </div>
-                    <div className="flex flex-wrap -mx-3 mb-6">
-                      <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+                      <div className="w-full md:w-1/2 px-3">
                         <label className="block uppercase tracking-wide text-gray-500 text-3 font-bold mb-2">
                           Address
                         </label>
                         <input
-                          className="appearance-none block w-full bg-gray-100 border rounded py-3 px-4  focus:outline-none focus:bg-white focus:border-blue-500"
+                          className="appearance-none block w-full bg-gray-100 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
                           type="text"
                           placeholder="Address"
                         />
                       </div>
                       <div className="w-full md:w-1/2 px-3">
                         <label className="block uppercase tracking-wide text-gray-500 text-3 font-bold mb-2">
-                          Phone
+                          Role
                         </label>
                         <input
-                          className="appearance-none block w-full bg-gray-100 border rounded py-3 px-4 focus:outline-none focus:bg-white focus:border-blue-500"
+                          className="appearance-none block w-full bg-gray-100 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
                           type="text"
-                          placeholder="*********"
+                          placeholder="Role"
                         />
                       </div>
                     </div>
-                    <div className="flex flex-wrap -mx-3 mb-6">
+                    <div className="flex flex-wrap -mx-3 mb-3">
                       <div className="w-full px-3">
                         <label
                           className="block uppercase tracking-wide text-gray-500 text-3 font-bold mb-2"
                           htmlFor="grid-password"
                         >
-                          Name
+                          Phone
                         </label>
                         <input
-                          className="appearance-none block w-full bg-gray-100 border rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-                          placeholder="role"
+                          className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+                          type="text"
+                          placeholder="phone"
+                        />
+                      </div>
+                    </div>
+                    <div className="flex flex-wrap -mx-3 mb-3">
+                      <div className="w-full px-3">
+                        <label
+                          className="block uppercase tracking-wide text-gray-500 text-3 font-bold mb-2"
+                          htmlFor="grid-password"
+                        >
+                          Email
+                        </label>
+                        <input
+                          className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+                          type="text"
+                          placeholder="Email"
                         />
                       </div>
                     </div>
                   </div>
                   <button
-                    type="submit"
-                    onClick={() => setShowModal(false)}
-                    className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+                    className="text-white bg-blue-500 hover:bg-blue-800 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center "
                   >
-                    Submit
+                    Update
+                  </button>
+                  <button
+                    className=" ml-2 text-white bg-red-400 hover:bg-red-600 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center "
+                    onClick={closeModal}
+                  >
+                    Cancel
                   </button>
                 </div>
                 {/* ....... end body ....... */}
               </div>
               {/* ....... end content ....... */}
             </div>
-          ) : null}
+          </Modal>
         </div>
       </div>
       <div>
@@ -149,14 +166,20 @@ const Profile = () => {
                       {userProfile.name}
                     </div>
                   </>
-                ) : 
-                <>
-                  <h3 className="pl-1 pb-2">Name : </h3>
-                  <div className="flex space-x-2 border border-grey-light rounded mb-4 pl-3 ">
+                ) : (
+                  <>
+                    <h3 className="pl-1 pb-2">Name : </h3>
+                    <div className="flex space-x-2 border border-grey-light rounded mb-4 pl-3 ">
                       <div>{userProfile.firstname}</div>
                       <div>{userProfile.lastname}</div>
-                  </div>
-                </>}
+                    </div>
+                  </>
+                )}
+                
+                {/* <h3 className="pl-1 pb-2">Gender : </h3>
+                <div className="block border border-grey-light w-full rounded mb-4 pl-3">
+                  {userProfile.gender}
+                </div> */}
                 <h3 className="pl-1 pb-2">Email Address : </h3>
                 <div className="block border border-grey-light w-full rounded mb-4 pl-3">
                   {userProfile.email}

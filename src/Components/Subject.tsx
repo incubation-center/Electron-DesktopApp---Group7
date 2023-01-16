@@ -57,7 +57,7 @@ function SubjectPage() {
               Edit
             </button>
             <button
-              onClick={() => onDeleteSubject(r.id)}
+              onClick={() => onDeleteSubject(r)}
               className="p-1 bg-red-400 rounded-md"
             >
               Delete
@@ -139,9 +139,9 @@ function SubjectPage() {
     setSubjects(res);
     closeModal();
   };
-  const onDeleteSubject = async (id: number) => {
-    await deleteSubjectById(id);
-    const newSubjects = subjects?.filter((v) => v.id != id);
+  const onDeleteSubject = async (d: Subject) => {
+    await deleteSubjectById(d.id);
+    const newSubjects = subjects?.filter((v) => v.id != d.id);
     setSubjects(newSubjects);
   };
 

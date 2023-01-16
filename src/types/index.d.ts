@@ -115,6 +115,17 @@ export type School = {
  * Model Student
  *
  */
+export type CreateStudentInputDto = {
+  [x: string]: SetStateAction<number | undefined>;
+  firstname: string;
+  lastname: string;
+  email: string;
+  gender: GenderEnumType;
+  phone: string;
+  address: string;
+  password: string;
+}
+
 export type Student = {
   id: number;
   firstname: string;

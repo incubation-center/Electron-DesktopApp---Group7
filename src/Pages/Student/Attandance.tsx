@@ -1,5 +1,4 @@
 import TableCustom from "@/Components/TableCustom";
-
 const columns = [
   {
     title: "Subject",

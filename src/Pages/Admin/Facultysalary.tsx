@@ -3,7 +3,7 @@ import React from 'react'
 const Facultysalary = () => {
   return (
     <div>
-      Faculty Salray!!!
+      Faculty Salary
     </div>
   )
 }
