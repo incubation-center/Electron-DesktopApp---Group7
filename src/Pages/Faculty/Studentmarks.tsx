@@ -12,9 +12,7 @@ const Studentmarks = () => {
   const [student, setStudents] = useState<Result>()
   const [columnTable, setColumnTable] = useState<any[]>([]);
   useEffect(() => {
-
     const columnsstudent = [
-  
       {
         title: "Subject Name",
         dataIndex: ["exam","subject","name"],
@@ -40,7 +38,6 @@ const Studentmarks = () => {
         width: 100,
       },
     ];
-    
     const columnsTeacher = [
       {
       title: "fist Name",
@@ -62,7 +59,7 @@ const Studentmarks = () => {
     },
     {
       title: "Mark",
-      dataIndex: "nark",
+      dataIndex: "mark",
       key: "mark",
       width: 300,
     },

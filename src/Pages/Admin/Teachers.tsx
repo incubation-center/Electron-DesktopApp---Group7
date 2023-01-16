@@ -24,6 +24,12 @@ const TeachersPage = () => {
       width: 180,
     },
     {
+      title: "Gender",
+      dataIndex: "gender",
+      key: "lastname",
+      width: 180,
+    },
+    {
       title: "Email",
       dataIndex: "email",
       key: "Email",
@@ -88,13 +94,15 @@ const TeachersPage = () => {
   // form state
   const onSubmit = async () => {
     let data = {
-      name: nameform,
+      firstname:firstNameForm,
+      lastname: lastNameForm,
+      gender:Gender,
       email: emailform,
       password: passwordform,
       phone: phoneform,
       address: addressform,
     } as unknown as Teacher;
-    if (!nameform || emailform) {
+    if (!firstNameForm || !lastNameForm || emailform) {
       alert("Please fill all credentail and recheck !!!");
       return;
     }
@@ -113,7 +121,9 @@ const TeachersPage = () => {
   };
 
   const onAddteacher = async () => {
-    setNameform("");
+    setFirstNameForm("");
+    setLastNameForm("");
+    setGender("")
     setPhoneform("");
     setEmailform("");
     setAddressform("");
@@ -121,7 +131,9 @@ const TeachersPage = () => {
     openModal();
   };
   const oneditTeacher = async (d: Teacher) => {
-    // setNameform(d.name);
+    setFirstNameForm(d.firstname);
+    setLastNameForm(d.lastname);
+    setGender(d.gender);
     setPhoneform(d.phone || "");
     setEmailform(d.email);
     setAddressform(d.address || "");
@@ -137,7 +149,9 @@ const TeachersPage = () => {
 
   // form data
   const [idForm, setIdForm] = useState<number>();
-  const [nameform, setNameform] = useState<string>("");
+  const [firstNameForm, setFirstNameForm] = useState<string>("");
+  const [lastNameForm, setLastNameForm] = useState<string>("");
+  const [Gender,setGender] = useState<string>("");
   const [phoneform, setPhoneform] = useState<string>("");
   const [emailform, setEmailform] = useState<string>("");
   const [addressform, setAddressform] = useState<string>("");
@@ -168,19 +182,40 @@ const TeachersPage = () => {
             <div className="m-10">
               <div className="w-full max-w-lg">
                 <div className="flex flex-wrap -mx-3 mb-3">
-                  <div className="w-full px-3">
-                    <label
-                      className="block uppercase tracking-wide text-gray-500 text-3 font-bold mb-2"
-                      htmlFor="grid-password"
-                    >
-                      Name
+                  <div className="w-full md:w-1/2 px-3">
+                    <label className="block uppercase tracking-wide text-gray-500 text-3 font-bold mb-2">
+                      First Name
                     </label>
                     <input
                       className="appearance-none block w-full bg-gray-100 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
                       type="text"
-                      placeholder="Name"
-                      // defaultValue={className}
-                      // onChange={(e) => setClassNmae(e.target.value)}
+                      placeholder="First Name"
+                      value={firstNameForm}
+                      onChange={(e) => setFirstNameForm(e.target.value)}
+                    />
+                  </div>
+                  <div className="w-full md:w-1/2 px-3">
+                    <label className="block uppercase tracking-wide text-gray-500 text-3 font-bold mb-2">
+                      First Name
+                    </label>
+                    <input
+                      className="appearance-none block w-full bg-gray-100 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+                      type="text"
+                      placeholder="First Name"
+                      value={Gender}
+                      onChange={(e) => setGender(e.target.value)}
+                    />
+                  </div>
+                  <div className="w-full md:w-1/2 px-3">
+                    <label className="block uppercase tracking-wide text-gray-500 text-3 font-bold mb-2">
+                      Last Name
+                    </label>
+                    <input
+                      className="appearance-none block w-full bg-gray-100 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+                      type="text"
+                      placeholder="Last Name"
+                      value={lastNameForm}
+                      onChange={(e) => setLastNameForm(e.target.value)}
                     />
                   </div>
                 </div>
@@ -196,8 +231,8 @@ const TeachersPage = () => {
                       className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
                       type="text"
                       placeholder="phone"
-                      // defaultValue={section}
-                      // onChange={(e) => setSection(e.target.value)}
+                      value={phoneform}
+                      onChange={(e) => setPhoneform(e.target.value)}
                     />
                   </div>
                 </div>
@@ -213,28 +248,30 @@ const TeachersPage = () => {
                       className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
                       type="text"
                       placeholder="Email"
-                      // defaultValue={section}
-                      // onChange={(e) => setSection(e.target.value)}
+                      value={emailform}
+                      onChange={(e) => setEmailform(e.target.value)}
                     />
                   </div>
                 </div>
-                <div className="flex flex-wrap -mx-3 mb-3">
-                  <div className="w-full px-3">
-                    <label
-                      className="block uppercase tracking-wide text-gray-500 text-3 font-bold mb-2"
-                      htmlFor="grid-password"
-                    >
-                      Passowrd
-                    </label>
-                    <input
-                      className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-                      type="text"
-                      placeholder="***************"
-                      // defaultValue={section}
-                      // onChange={(e) => setSection(e.target.value)}
-                    />
+                {!idForm ? (
+                  <div className="flex flex-wrap -mx-3 mb-3">
+                    <div className="w-full px-3">
+                      <label
+                        className="block uppercase tracking-wide text-gray-500 text-3 font-bold mb-2"
+                        htmlFor="grid-password"
+                      >
+                        Passowrd
+                      </label>
+                      <input
+                        className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+                        type="text"
+                        placeholder="***************"
+                        value={passwordform}
+                        onChange={(e) => setPasswordForm(e.target.value)}
+                      />
+                    </div>
                   </div>
-                </div>
+                ) : null}
                 <div className="flex flex-wrap -mx-3 mb-3">
                   <div className="w-full px-3">
                     <label
@@ -247,14 +284,14 @@ const TeachersPage = () => {
                       className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
                       type="text"
                       placeholder="Address"
-                      // defaultValue={section}
-                      // onChange={(e) => setSection(e.target.value)}
+                      value={addressform}
+                      onChange={(e) => setAddressform(e.target.value)}
                     />
                   </div>
                 </div>
               </div>
               <button
-                onClick={openModal}
+                onClick={onSubmit}
                 className="text-white bg-blue-500 hover:bg-blue-800 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center "
               >
                 Add
