@@ -1,5 +1,5 @@
 import React, { HTMLAttributes, TdHTMLAttributes } from "react";
-import { DefaultRecordType } from "rc-table/lib/interface";
+import { DefaultRecordType, GetRowKey } from "rc-table/lib/interface";
 import Table from "rc-table";
 import {
   ColumnsType,
@@ -20,16 +20,18 @@ const onHeaderRow = (record: any, index: number | undefined) => {
   return props;
 };
 
-
 const TableCustom = ({
   data,
   columns,
+  rowKey,
 }: {
   data: readonly DefaultRecordType[] | undefined;
   columns: ColumnsType<ColumnGroupType<any> | ColumnType<any>> | undefined;
+  rowKey?: string | GetRowKey<DefaultRecordType> | undefined;
 }) => {
   return (
     <Table
+      rowKey={rowKey}
       onHeaderRow={onHeaderRow}
       columns={columns}
       data={data}
@@ -38,4 +40,4 @@ const TableCustom = ({
   );
 };
 
-export default TableCustom; 
+export default TableCustom;
