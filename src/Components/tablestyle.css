@@ -1,0 +1,22 @@
+table {
+    /* table-layout: fixed; */
+    width: 120px;
+    border-radius: 5px;
+    border-collapse: collapse;
+    overflow: hidden;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+    font-family: sans-serif;
+  }
+  
+  td, th {
+    /* border: 1px solid blue; */
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    padding: 12px 15px;
+    text-align: left;
+  }
+  
+  tbody tr:last-of-type {
+    border-bottom: 2px solid rgb(104, 104, 255);
+  }
