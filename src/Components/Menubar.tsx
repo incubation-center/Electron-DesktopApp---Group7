@@ -9,6 +9,7 @@ interface childrenProps {
 const MenuBar = ({ children }: childrenProps) => {
   const [open, setOpen] = useState(true);
   const [menus, setMenus] = useState<any[]>([]);
+  const [activeitem, setActiveItem] = useState(true);
   useEffect(() => {
     getUserProfile().then((res) => {
       const userRole = res.role;
@@ -96,14 +97,14 @@ const MenuBar = ({ children }: childrenProps) => {
             }`}
           />
           <h1
-            className={`text-gray-500 origin-left font-medium text-xl duration-200 ${
+            className={`text-gray-500 origin-left font-bold text-xl duration-200 ${
               !open && "scale-0"
             }`}
           >
             SMS
           </h1>
         </div>
-        <ul className="pt-6">
+        <ul className="pt-6 space-y-3 font-semibold">
           {menus.map((item, index) =>
             item.path == "/logout" ? (
               <button
@@ -125,8 +126,9 @@ const MenuBar = ({ children }: childrenProps) => {
               <Link
                 key={index}
                 to={item.path}
-                className={`link flex rounded-md p-2 cursor-pointer hover:bg-light-white text-gray-500 text-sm items-center gap-x-4
+                className={`link flex rounded-md p-2 cursor-pointer hover:bg-white ${activeitem === item.title ? 'bg-white' : ''} text-gray-500 text-sm items-center gap-x-4
            ${index === 0 && "bg-light-white"}`}
+           onClick={() => {setActiveItem(item.title)}}
               >
                 <img src={`./src/assets/${item.src}.png`} />
                 <span
