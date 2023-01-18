@@ -140,9 +140,12 @@ function SubjectPage() {
     closeModal();
   };
   const onDeleteSubject = async (d: Subject) => {
-    await deleteSubjectById(d.id);
-    const newSubjects = subjects?.filter((v) => v.id != d.id);
-    setSubjects(newSubjects);
+    const deletedSub = await deleteSubjectById(d.id);
+    if (!deletedSub) {
+      alert("Delete failed");
+      return;
+    }
+    setSubjects((prev) => prev?.filter((s) => s.id != deletedSub.id));
   };
 
   const onSetAddFormSubject = () => {
