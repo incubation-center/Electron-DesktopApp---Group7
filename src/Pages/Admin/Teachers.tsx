@@ -5,7 +5,7 @@ import {
   createTeacher,
   deleteTeacherByid,
 } from "@/services/teacher";
-import { CreateTeacherInputDto, Teacher, TeacherInput } from "@/types";
+import { Teacher } from "@/types";
 import { useEffect, useState } from "react";
 import Modal from "react-modal";
 
@@ -51,7 +51,7 @@ const TeachersPage = () => {
       title: "Operations",
       dataIndex: "",
       key: "operations",
-      render: (r: TeacherInput) => (
+      render: (r: Teacher) => (
         <div className="space-x-2">
           <button
             // onClick={() => onSetFormSubject(r)}
@@ -60,7 +60,8 @@ const TeachersPage = () => {
             Edit
           </button>
           <button
-            onClick={() => ondelteTeacher(r.id)}
+            onClick={() => ondelteTeacher(r)}
+            // onClick={() => onDeleteSubject(r.id)}
             className="p-1 bg-red-400 rounded-md"
           >
             Delete
@@ -100,8 +101,8 @@ const TeachersPage = () => {
       password: passwordform,
       phone: phoneform,
       address: addressform,
-    } as TeacherInput;
-    if (!firstNameForm || !lastNameForm || !Gender || emailform) {
+    } as unknown as Teacher;
+    if (!firstNameForm || !lastNameForm || emailform) {
       alert("Please fill all credentail and recheck !!!");
       return;
     }
@@ -132,7 +133,6 @@ const TeachersPage = () => {
   const oneditTeacher = async (d: Teacher) => {
     setFirstNameForm(d.firstname);
     setLastNameForm(d.lastname);
-    setPasswordForm(d.password);
     setGender(d.gender);
     setPhoneform(d.phone || "");
     setEmailform(d.email);
@@ -141,8 +141,8 @@ const TeachersPage = () => {
     openModal();
   };
 
-  const ondelteTeacher = async (d: number) => {
-    const res = await deleteTeacherByid(d);
+  const ondelteTeacher = async (d: Teacher) => {
+    const res = await deleteTeacherByid(d.id);
     const newTeacher = teachers.filter((t) => t.id !== res.id);
     SetTeacher(newTeacher);
   };
@@ -158,16 +158,15 @@ const TeachersPage = () => {
   const [passwordform, setPasswordForm] = useState<string>("");
 
   return (
-    <div className="m-auto h-screen overflow-auto">
-      <div className="text-3xl text-center font-bold mb-5">Faculties</div>
+    <div className="p-10">
       <div className="flex justify-between">
         <p className="mb-5">List all teachers :</p>
         <button
           onClick={openModal}
           type="button"
-          className="bg-sky-400 py-1 px-4 border rounded-md mb-6 hover:text-white focus:bg-sky-300"
+          className="bg-gray-400 py-1 px-4 border rounded-md mb-6 hover:bg-gray-500 hover:text-slate-300 focus:bg-gray-500"
         >
-          + Add
+          Add
         </button>
       </div>
       <Modal
