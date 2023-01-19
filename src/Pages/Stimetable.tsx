@@ -79,7 +79,7 @@ const columns = [
 function timetable() {
   return (
     <div className="p-10">
-      <p className="mb-5">Exam page!!!! Exam Sub Marks Result</p>
+      <div className="text-3xl text-center font-bold mb-6">TimeTable</div>
       <TableCustom data={data} columns={columns} />
     </div>
   );

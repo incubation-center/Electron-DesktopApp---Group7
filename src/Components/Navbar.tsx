@@ -55,11 +55,11 @@ const Navbar = () => {
             }`}
           >
             <ul className="items-center justify-center space-y-8 md:flex md:space-x-6 md:space-y-0">
-              <li className="text-gray-500 hover:text-indigo-200">
+              <li className="text-gray-500 hover:text-white font-medium">
                 <a href="/">Home</a>
               </li>
-              <li className="text-gray-500 hover:text-indigo-200">
-                <a className="hover:text-red-800 focus:text-white" href="/contacus">Contact US</a>
+              <li className="text-gray-500 hover:text-white font-medium">
+                <a href="/contacus">Contact US</a>
               </li>
             </ul>
             <div className="mt-3 space-y-2 lg:hidden md:inline-block"></div>

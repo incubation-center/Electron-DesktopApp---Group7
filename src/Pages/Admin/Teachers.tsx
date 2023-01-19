@@ -145,14 +145,15 @@ const TeachersPage = () => {
 
   return (
     <div className="p-10">
+      <div className="text-3xl text-center font-bold mb-5">Faculties</div>
       <div className="flex justify-between">
         <p className="mb-5">List all teachers :</p>
         <button
           onClick={openModal}
           type="button"
-          className="bg-gray-400 py-1 px-4 border rounded-md mb-6 hover:bg-gray-500 hover:text-slate-300 focus:bg-gray-500"
+          className="bg-sky-400 py-1 px-4 border rounded-md mb-6 hover:text-white focus:bg-sky-300"
         >
-          Add
+          + Add
         </button>
       </div>
       <Modal

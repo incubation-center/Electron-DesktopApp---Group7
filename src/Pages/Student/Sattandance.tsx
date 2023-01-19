@@ -51,7 +51,7 @@ const data = [
 function Sattandance() {
   return (
     <div className="p-10">
-      <p className="mb-5">Sattandance: sub total present absent percentage</p>
+      <div className="text-3xl text-center font-bold mb-7">Students Attendance</div>
       <TableCustom data={data} columns={columns}/>
     </div>
   );

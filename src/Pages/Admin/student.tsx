@@ -166,14 +166,15 @@ const StudentPage = () => {
   const [passwordForm, setPasswordForm] = React.useState<string>("");
 
   return (
-    <div className="p-10">
-      <div className="flex justify-between">
-        <div className="py-4 px-2 ">Students Managements</div>
+    <div className="p-9">
+      <div className="text-3xl text-center font-bold">Students Managements</div>
+      <div className="p-1">
+
         <button
           onClick={onSetAddNewForm}
-          className="bg-sky-400 py-1 px-4 rounded-lg m-4"
+          className="bg-sky-400 py-1 px-4 rounded-lg m-4 hover:text-white"
         >
-          Add
+          + Add
         </button>
       </div>
       <Modal
@@ -303,10 +304,10 @@ const StudentPage = () => {
           {/* ....... end content ....... */}
         </div>
       </Modal>
-      
+
       <div className="  overflow-y-auto flex justify-center">
 
-      
+
         <TableCustom data={students} columns={columns} />
       </div>
     </div>

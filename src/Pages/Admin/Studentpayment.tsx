@@ -52,7 +52,7 @@ const data = [
 const Studentpayment = () => {
   return (
     <div className="p-10">
-      <p className="mb-5">Sattandance: sub total ClassId teacherId schoolId</p>
+      <p className="mb-10 font-bold text-center text-3xl">Student Payment</p>
       <TableCustom data={data} columns={columns}/>
     </div>
   )

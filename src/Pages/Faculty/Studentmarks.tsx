@@ -14,7 +14,7 @@ const Studentmarks = () => {
   useEffect(() => {
 
     const columnsstudent = [
-  
+
       {
         title: "Subject Name",
         dataIndex: ["exam","subject","name"],
@@ -40,7 +40,7 @@ const Studentmarks = () => {
         width: 100,
       },
     ];
-    
+
     const columnsTeacher = [
       {
       title: "fist Name",
@@ -96,9 +96,10 @@ const Studentmarks = () => {
         })
     }
   },[])
-  
+
   return (
     <div className='m-10'>
+      <div className="mb-10 text-3xl text-center font-bold">Students Result</div>
       {/* <div className='flex mb-10'>
         Batch :
         <select className="pr-2 pl-2 ml-2">
@@ -122,7 +123,7 @@ const Studentmarks = () => {
             Add
         </button>
       </div> */}
-      
+
     </div>
   )
 }

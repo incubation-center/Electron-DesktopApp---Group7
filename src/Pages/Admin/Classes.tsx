@@ -39,7 +39,7 @@ const Classespage = () => {
     getAllClasses().then((res) => {
       console.log(res);
       setClasses(res)
-      
+
     })
   },[])
 
@@ -102,16 +102,15 @@ const Classespage = () => {
 
   return (
     <div className="p-10">
+      <div className="text-3xl text-center font-bold p-2 mb-7">Courses</div>
       <div className="flex justify-between">
-        <p className="mb-5">
-          Sattandance: sub total ClassId teacherId schoolId
-        </p>
+
         <button
             onClick={onsetAddclassform}
           type="button"
-          className="bg-gray-400 py-1 px-4 border rounded-md mb-6 hover:bg-gray-500 hover:text-slate-300 focus:bg-gray-500"
+          className="bg-sky-400 py-1 px-4 border rounded-md mb-6 hover:text-white focus:bg-sky-400"
         >
-          Add
+          + Add
         </button>
       </div>
       <Modal

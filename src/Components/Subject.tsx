@@ -175,18 +175,17 @@ function SubjectPage() {
     console.log(teacherIdInput);
   }, [teacherIdInput]);
   return (
-    <div className="p-10">
+    <div className="p-8">
+      <h1 className="text-3xl text-center font-bold p-3">Subject</h1>
       <div className="flex justify-between">
-        <p className="mb-5">
-          Sattandance: sub total ClassId teacherId schoolId
-        </p>
+
         {user.role == "admin" && (
           <button
             onClick={onSetAddFormSubject}
             type="button"
-            className="bg-gray-400 py-1 px-4 border rounded-md mb-6 hover:bg-gray-500 hover:text-slate-300 focus:bg-gray-500"
+            className="bg-sky-400 py-1 px-4 border rounded-md mb-6 hover:bg-sky-300 hover:text-white focus:bg-white-500"
           >
-            Add
+            + Add
           </button>
         )}
       </div>
