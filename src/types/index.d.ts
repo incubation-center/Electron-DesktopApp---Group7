@@ -124,7 +124,7 @@ export type CreateStudentInputDto = {
   phone: string;
   address: string;
   password: string;
-}
+};
 
 export type Student = {
   id: number;
@@ -240,10 +240,10 @@ export type Fee = {
  */
 export type Payment = {
   id: number;
-  date: Date;
+  date: string;
   amount: number;
   schoolId: number;
-  studentId: number | null;
+  studentId: number;
   feeId: number | null;
 };
 
@@ -255,7 +255,7 @@ export type Expense = {
   id: number;
   name: string;
   amount: number;
-  date: Date;
+  date: string;
   schoolId: number;
 };
 
