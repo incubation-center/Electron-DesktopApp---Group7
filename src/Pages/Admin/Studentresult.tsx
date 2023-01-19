@@ -53,7 +53,7 @@ const Studentresult = () => {
   };
 
   return (
-    <div className="p-10">
+    <div className="m-auto h-screen overflow-auto">
       <div className="flex justify-between">
         <div className="py-4 px-2 ">Students Managements</div>
         <button

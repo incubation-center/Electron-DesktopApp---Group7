@@ -1,4 +1,4 @@
-import React from 'react'
+import React from "react";
 import TableCustom from "@/Components/TableCustom";
 
 const data = [
@@ -39,35 +39,34 @@ const columns = [
 
 const Generatereport = () => {
   return (
-    <div className="p-10">
-      <div className='flex mb-10'>
+    <div className="m-auto h-screen overflow-auto">
+      <div className="flex mb-10">
         Semester :
-          <select className="pr-2 pl-2 ml-2">
-            <option selected>1</option>
-            <option>2</option>
-            <option>3</option>
-            <option>4</option>
-            <option>5</option>
-            <option>6</option>
-            <option>7</option>
-            <option>8</option>
-          </select>
+        <select className="pr-2 pl-2 ml-2">
+          <option selected>1</option>
+          <option>2</option>
+          <option>3</option>
+          <option>4</option>
+          <option>5</option>
+          <option>6</option>
+          <option>7</option>
+          <option>8</option>
+        </select>
       </div>
 
-      <div className='text-left'>
+      <div className="text-left">
         <TableCustom data={data} columns={columns} />
       </div>
 
-      <div className='flex flex-col m-10'>
+      <div className="flex flex-col m-10">
         <div className="flex justify-center items-center">
           <button className="bg-blue-500 hover:bg-blue-700 text-white py-2 px-4 rounded grid">
             Add Report
           </button>
         </div>
       </div>
-
     </div>
-  )
-}
+  );
+};
 
-export default Generatereport
+export default Generatereport;

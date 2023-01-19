@@ -87,7 +87,7 @@ const IncomeRecorded = () => {
   };
 
   return (
-    <div className=" bg-slate-500 w-full h-full">
+    <div className="m-auto h-screen  overflow-scroll ">
       <div className="flex justify-between">
         <p className="">All Income</p>
         <button

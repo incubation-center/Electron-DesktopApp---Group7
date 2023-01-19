@@ -28,8 +28,18 @@ const Classespage = () => {
       key: "opperations",
       render: (r: Class) => (
         <div className="space-x-2">
-          <button onClick={() => onsetFormclass(r)} className="p-1 bg-blue-400 rounded-md">Edit</button>
-          <button onClick={() => ondeletClass(r.id)} className="p-1 bg-red-400 rounded-md">Delete</button>
+          <button
+            onClick={() => onsetFormclass(r)}
+            className="p-1 bg-blue-400 rounded-md"
+          >
+            Edit
+          </button>
+          <button
+            onClick={() => ondeletClass(r.id)}
+            className="p-1 bg-red-400 rounded-md"
+          >
+            Delete
+          </button>
         </div>
       ),
     },
@@ -38,10 +48,9 @@ const Classespage = () => {
   useEffect(() => {
     getAllClasses().then((res) => {
       console.log(res);
-      setClasses(res)
-
-    })
-  },[])
+      setClasses(res);
+    });
+  }, []);
 
   const onsetAddclassform = () => {
     setClassNmae("");
@@ -51,13 +60,16 @@ const Classespage = () => {
   const onsetFormclass = (classes: Class) => {
     setClassNmae(classes.name);
     setSection(classes.sections);
-    setClassid(classes.id)
+    setClassid(classes.id);
     openModal();
   };
   const ondeletClass = async (id: number) => {
-    await deleteClassByid(id);
-    const newClasses = classs?.filter((r) => r.id != id);
-    setClasses(newClasses);
+    const res = await deleteClassByid(id);
+    if (classs && res) {
+      const index = classs.findIndex((r) => r.id === id);
+      classs.splice(index, 1);
+      setClasses([...classs]);
+    }
   };
 
   const onAddClass = async () => {
@@ -101,12 +113,11 @@ const Classespage = () => {
   };
 
   return (
-    <div className="p-10">
+    <div className="m-auto h-screen overflow-auto">
       <div className="text-3xl text-center font-bold p-2 mb-7">Courses</div>
       <div className="flex justify-between">
-
         <button
-            onClick={onsetAddclassform}
+          onClick={onsetAddclassform}
           type="button"
           className="bg-sky-400 py-1 px-4 border rounded-md mb-6 hover:text-white focus:bg-sky-400"
         >
@@ -138,8 +149,8 @@ const Classespage = () => {
                       className="appearance-none block w-full bg-gray-100 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
                       type="text"
                       placeholder="class"
-                        defaultValue={className}
-                        onChange={(e) => setClassNmae(e.target.value)}
+                      defaultValue={className}
+                      onChange={(e) => setClassNmae(e.target.value)}
                     />
                   </div>
                 </div>
@@ -155,8 +166,8 @@ const Classespage = () => {
                       className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
                       type="text"
                       placeholder="section"
-                        defaultValue={sections}
-                        onChange={(e) => setSection(e.target.value)}
+                      defaultValue={sections}
+                      onChange={(e) => setSection(e.target.value)}
                     />
                   </div>
                 </div>

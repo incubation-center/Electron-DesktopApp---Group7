@@ -178,10 +178,9 @@ function SubjectPage() {
     console.log(teacherIdInput);
   }, [teacherIdInput]);
   return (
-    <div className="p-8">
+    <div className="m-auto h-screen overflow-auto">
       <h1 className="text-3xl text-center font-bold p-3">Subject</h1>
       <div className="flex justify-between">
-
         {user.role == "admin" && (
           <button
             onClick={onSetAddFormSubject}
@@ -290,7 +289,7 @@ function SubjectPage() {
           {/* ....... end content ....... */}
         </div>
       </Modal>
-      <TableCustom data={subjects} columns={columnTable} rowKey="id" />
+      <TableCustom data={subjects} columns={columnTable} />
     </div>
   );
 }

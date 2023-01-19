@@ -3,7 +3,7 @@ import Contactus from "./Pages/Contactus";
 import Home from "./Pages/Home";
 import Navbar from "./Components/Navbar";
 import Generatereport from "./Pages/Faculty/Generatereport";
-import Studentattendance from "./Pages/Faculty/Ftudentattendance";
+
 import Studentmarks from "./Pages/Faculty/Studentmarks";
 import Exam from "./Pages/Student/Exam";
 import Riseissue from "./Pages/Student/Riseissue";
@@ -24,14 +24,13 @@ import Schedule from "./Pages/Schedule/Schedule";
 
 const App: React.FC = () => {
   return (
-    <div>
+    <div className="flex flex-col overflow-hidden h-screen">
       <Navbar />
       <Menubar>
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/contacus" element={<Contactus />} />
           <Route path="/generatereport" element={<Generatereport />} />
-          <Route path="/studentattendace" element={<Studentattendance />} />
           <Route path="/studentresult" element={<Studentmarks />} />
           <Route path="/exam" element={<Exam />} />
           <Route path="/class" element={<Classes />} />

@@ -119,7 +119,7 @@ const StudentPage = () => {
       email: emailForm,
       password: passwordForm,
     } as StudentInput;
-    if (!firstNameForm || !lastNameForm ||!Gender || !emailForm) {
+    if (!firstNameForm || !lastNameForm || !Gender || !emailForm) {
       alert("Please fill all the fields");
       return;
     }
@@ -139,7 +139,7 @@ const StudentPage = () => {
   const onShowEditForm = (r: CreateStudentInputDto) => {
     setFirstNameForm(r.firstname);
     setLastNameForm(r.lastname);
-    setGender(r.gender)
+    setGender(r.gender);
     setPhoneForm(r.phone || "");
     setAddressForm(r.address || "");
     setEmailForm(r.email);
@@ -154,7 +154,7 @@ const StudentPage = () => {
     setGender("");
     setPhoneForm("");
     setAddressForm("");
-    setPasswordForm("")
+    setPasswordForm("");
     setEmailForm("");
     setIdForm(0);
     openModal();
@@ -168,17 +168,16 @@ const StudentPage = () => {
   const [idForm, setIdForm] = React.useState<number>();
   const [firstNameForm, setFirstNameForm] = React.useState<string>("");
   const [lastNameForm, setLastNameForm] = React.useState<string>("");
-  const [Gender,setGender] = React.useState<string>("");
+  const [Gender, setGender] = React.useState<string>("");
   const [phoneForm, setPhoneForm] = React.useState<string>("");
   const [addressForm, setAddressForm] = React.useState<string>("");
   const [emailForm, setEmailForm] = React.useState<string>("");
   const [passwordForm, setPasswordForm] = React.useState<string>("");
 
   return (
-    <div className="p-9">
+    <div className="m-auto h-screen overflow-auto">
       <div className="text-3xl text-center font-bold">Students Managements</div>
       <div className="p-1">
-
         <button
           onClick={onSetAddNewForm}
           className="bg-sky-400 py-1 px-4 rounded-lg m-4 hover:text-white"
@@ -211,7 +210,7 @@ const StudentPage = () => {
                       onChange={(e) => setFirstNameForm(e.target.value)}
                     />
                   </div>
-                  
+
                   <div className="w-full md:w-1/2 px-3">
                     <label className="block uppercase tracking-wide text-gray-500 text-3 font-bold mb-2">
                       Last Name
@@ -254,7 +253,7 @@ const StudentPage = () => {
                     />
                   </div>
                 </div>
-                
+
                 <div className="flex flex-wrap -mx-3 mb-3">
                   <div className="w-full px-3">
                     <label
@@ -272,25 +271,25 @@ const StudentPage = () => {
                     />
                   </div>
                 </div>
-              
-                  <div className="flex flex-wrap -mx-3 mb-3">
-                    <div className="w-full px-3">
-                      <label
-                        className="block uppercase tracking-wide text-gray-500 text-3 font-bold mb-2"
-                        htmlFor="grid-password"
-                      >
-                        Passowrd
-                      </label>
-                      <input
-                        className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-                        type="text"
-                        placeholder="***************"
-                        value={passwordForm}
-                        onChange={(e) => setPasswordForm(e.target.value)}
-                      />
-                    </div>
+
+                <div className="flex flex-wrap -mx-3 mb-3">
+                  <div className="w-full px-3">
+                    <label
+                      className="block uppercase tracking-wide text-gray-500 text-3 font-bold mb-2"
+                      htmlFor="grid-password"
+                    >
+                      Passowrd
+                    </label>
+                    <input
+                      className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+                      type="text"
+                      placeholder="***************"
+                      value={passwordForm}
+                      onChange={(e) => setPasswordForm(e.target.value)}
+                    />
                   </div>
-                
+                </div>
+
                 <div className="flex flex-wrap -mx-3 mb-3">
                   <div className="w-full px-3">
                     <label
@@ -329,8 +328,6 @@ const StudentPage = () => {
       </Modal>
 
       <div className="  overflow-y-auto flex justify-center">
-
-
         <TableCustom data={students} columns={columns} />
       </div>
     </div>

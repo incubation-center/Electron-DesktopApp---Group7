@@ -96,7 +96,7 @@ const ExpenseRecorded = () => {
   };
 
   return (
-    <div className="p-10">
+    <div className="m-auto h-screen overflow-auto">
       <div className="flex justify-between">
         <p className="">All Expense</p>
         <button

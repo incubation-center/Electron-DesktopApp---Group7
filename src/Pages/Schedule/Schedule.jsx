@@ -27,8 +27,8 @@ export default class DemoApp extends React.Component {
 
   render() {
     return (
-      <div className='flex items-stretch md:items-center min-h-full'>
-        {this.renderSidebar()}
+      <div className='m-auto h-screen overflow-auto mt-10'>
+
         <div className='flex items-center m-auto h-700'>
           <FullCalendar
             plugins={[dayGridPlugin, timeGridPlugin, interactionPlugin]}

@@ -94,9 +94,9 @@ const TeachersPage = () => {
   // form state
   const onSubmit = async () => {
     let data = {
-      firstname:firstNameForm,
+      firstname: firstNameForm,
       lastname: lastNameForm,
-      gender:Gender,
+      gender: Gender,
       email: emailform,
       password: passwordform,
       phone: phoneform,
@@ -123,7 +123,7 @@ const TeachersPage = () => {
   const onAddteacher = async () => {
     setFirstNameForm("");
     setLastNameForm("");
-    setGender("")
+    setGender("");
     setPhoneform("");
     setEmailform("");
     setAddressform("");
@@ -143,22 +143,22 @@ const TeachersPage = () => {
 
   const ondelteTeacher = async (d: Teacher) => {
     const res = await deleteTeacherByid(d.id);
-    const newTeacher = teachers.filter((t) => t.id !== res.id );
-    SetTeacher(newTeacher)
+    const newTeacher = teachers.filter((t) => t.id !== res.id);
+    SetTeacher(newTeacher);
   };
 
   // form data
   const [idForm, setIdForm] = useState<number>();
   const [firstNameForm, setFirstNameForm] = useState<string>("");
   const [lastNameForm, setLastNameForm] = useState<string>("");
-  const [Gender,setGender] = useState<string>("");
+  const [Gender, setGender] = useState<string>("");
   const [phoneform, setPhoneform] = useState<string>("");
   const [emailform, setEmailform] = useState<string>("");
   const [addressform, setAddressform] = useState<string>("");
   const [passwordform, setPasswordForm] = useState<string>("");
 
   return (
-    <div className="p-10">
+    <div className="m-auto h-screen overflow-auto">
       <div className="text-3xl text-center font-bold mb-5">Faculties</div>
       <div className="flex justify-between">
         <p className="mb-5">List all teachers :</p>

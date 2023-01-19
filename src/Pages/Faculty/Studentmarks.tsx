@@ -1,22 +1,18 @@
 import { useEffect, useState } from "react";
 import TableCustom from "@/Components/TableCustom";
-import { Result } from '@/types';
+import { Result } from "@/types";
 import { getResults } from "@/services/result";
 import { userInfo } from "@/services/auth";
 
-
-
-
 const Studentmarks = () => {
   const user = userInfo();
-  const [student, setStudents] = useState<Result>()
+  const [students, setStudents] = useState<Result>();
   const [columnTable, setColumnTable] = useState<any[]>([]);
   useEffect(() => {
     const columnsstudent = [
-
       {
         title: "Subject Name",
-        dataIndex: ["exam","subject","name"],
+        dataIndex: ["exam", "subject", "name"],
         key: "mark",
         width: 150,
       },
@@ -28,76 +24,78 @@ const Studentmarks = () => {
       },
       {
         title: "Date",
-        dataIndex: ["exam","date"],
+        dataIndex: ["exam", "date"],
         key: "examId",
         width: 300,
       },
       {
         title: "code",
-        dataIndex: ["exam","subject","code"],
+        dataIndex: ["exam", "subject", "code"],
         key: "examId",
         width: 100,
       },
     ];
     const columnsTeacher = [
       {
-      title: "fist Name",
-      dataIndex: ["student","firstname"],
-      key: "firstname",
-      width: 200,
-    },
-    {
-      title: "last Name",
-      dataIndex: ["student", "lastname"],
-      key: "lastname",
-      width: 200,
-    },
-    {
-      title: "gender",
-      dataIndex: ["student","gender"],
-      key: "examId",
-      width: 100,
-    },
-    {
-      title: "Mark",
-      dataIndex: "mark",
-      key: "mark",
-      width: 300,
-    },
-    {
-      title: "Email",
-      dataIndex: ["student","email"],
-      key: "mark",
-      width: 300,
-    },
-    {
-      title: "Mark",
-      dataIndex: ["student", "address"],
-      key: "mark",
-      width: 300,
-    },
-    ]
+        title: "fist Name",
+        dataIndex: ["student", "firstname"],
+        key: "firstname",
+        width: 200,
+      },
+      {
+        title: "last Name",
+        dataIndex: ["student", "lastname"],
+        key: "lastname",
+        width: 200,
+      },
+      {
+        title: "gender",
+        dataIndex: ["student", "gender"],
+        key: "examId",
+        width: 100,
+      },
+      {
+        title: "Mark",
+        dataIndex: "mark",
+        key: "mark",
+        width: 300,
+      },
+      {
+        title: "Email",
+        dataIndex: ["student", "email"],
+        key: "mark",
+        width: 300,
+      },
+      {
+        title: "Mark",
+        dataIndex: ["student", "address"],
+        key: "mark",
+        width: 300,
+      },
+    ];
 
-    switch(user.role){
+    switch (user.role) {
       case "student":
         setColumnTable(columnsstudent);
         getResults().then((res) => {
-          console.log(res)
-          setStudents(res)
+          console.log(res);
+          setStudents(res);
         });
-        break
+        break;
       case "teacher":
         setColumnTable(columnsTeacher);
         getResults().then((res) => {
           console.log(res);
-          setStudents(res)
-        })
+          setStudents(res);
+        });
     }
-  },[])
+  }, []);
 
   return (
-    <div className='m-10'>
-      <div className="mb-10 text-3xl text-center font-bold">Students Result</div>
+    <div className="m-auto h-screen overflow-auto">
+      <div className="mb-10 text-3xl text-center font-bold">
+        Students Result
+      </div>
       {/* <div className='flex mb-10'>
         Batch :
         <select className="pr-2 pl-2 ml-2">
@@ -112,8 +110,8 @@ const Studentmarks = () => {
         </select>
       </div> */}
 
-      <div className='text-left'>
-        <TableCustom data={student} columns={columnTable} />
+      <div className="text-left">
+        <TableCustom data={students} columns={columnTable} />
       </div>
 
       {/* <div className="flex justify-center items-center mt-7">
@@ -121,9 +119,8 @@ const Studentmarks = () => {
             Add
         </button>
       </div> */}
-
     </div>
-  )
-}
+  );
+};
 
-export default Studentmarks
+export default Studentmarks;
