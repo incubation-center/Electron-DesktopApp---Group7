@@ -31,7 +31,7 @@ const MenuBar = ({ children }: childrenProps) => {
           path: "/faculties",
           src: "teacher",
         },
-        ["teacher","student"].includes(userRole) && {
+        ["teacher", "student"].includes(userRole) && {
           title: "Student Results",
           path: "/studentresult",
           src: "teacher",
@@ -48,7 +48,7 @@ const MenuBar = ({ children }: childrenProps) => {
         },
         ["teacher", "student"].includes(userRole) && {
           title: "Time Table",
-          path: "/timetable",
+          path: "/schedule",
           src: "salary",
         },
         ["teacher", "student"].includes(userRole) && {
@@ -56,15 +56,19 @@ const MenuBar = ({ children }: childrenProps) => {
           path: "/attendances",
           src: "Attendence",
         },
-        ["student"].includes(userRole) && { title: "Rise Issues", path: "/riseissues", src: "issue" },
+        ["student"].includes(userRole) && {
+          title: "Rise Issues",
+          path: "/riseissues",
+          src: "issue",
+        },
         ["admin"].includes(userRole) && {
           title: "Expand record",
-          path: "/facultysalary",
+          path: "/expenseRecorded",
           src: "salary",
         },
         ["admin"].includes(userRole) && {
           title: "Income record",
-          path: "/studentpayment",
+          path: "/incomeRecorded",
           src: "salary",
         },
         { title: "Log Out", path: "/logout", src: "logout" },
@@ -126,9 +130,13 @@ const MenuBar = ({ children }: childrenProps) => {
               <Link
                 key={index}
                 to={item.path}
-                className={`link flex rounded-md p-2 cursor-pointer hover:bg-white ${activeitem === item.title ? 'bg-white' : ''} text-gray-500 text-sm items-center gap-x-4
+                className={`link flex rounded-md p-2 cursor-pointer hover:bg-white ${
+                  activeitem === item.title ? "bg-white" : ""
+                } text-gray-500 text-sm items-center gap-x-4
            ${index === 0 && "bg-light-white"}`}
-           onClick={() => {setActiveItem(item.title)}}
+                onClick={() => {
+                  setActiveItem(item.title);
+                }}
               >
                 <img src={`./src/assets/${item.src}.png`} />
                 <span
