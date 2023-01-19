@@ -7,7 +7,7 @@ import {
 } from "../../services/student";
 import TableCustom from "@/Components/TableCustom";
 import Modal from "react-modal";
-import { Student, StudentInput } from "@/types";
+import { CreateStudentInputDto, Student, StudentInput } from "@/types";
 
 const customStyles = {
   content: {
@@ -36,6 +36,12 @@ const StudentPage = () => {
       width: 180,
     },
     {
+      title: "Gender",
+      dataIndex: "gender",
+      key: "lastname",
+      width: 180,
+    },
+    {
       title: "phone",
       dataIndex: "phone",
       key: "phone",
@@ -58,7 +64,7 @@ const StudentPage = () => {
       dataIndex: "",
       key: "operations",
       width: 300,
-      render: (r: Student) => (
+      render: (r: CreateStudentInputDto) => (
         <div className="space-x-2 flex justify-center">
           <button
             onClick={() => onShowEditForm(r)} // '/student-info?id=1293'
@@ -73,7 +79,7 @@ const StudentPage = () => {
             Edit
           </button>
           <button
-            onClick={() => onDelete(r)}
+            onClick={() => onDelete(r.id)}
             className="p-1 bg-red-400 hover:bg-red-300 duration-500 rounded-md"
           >
             Delete
@@ -83,7 +89,6 @@ const StudentPage = () => {
     },
   ];
   const [modalIsOpen, setIsOpen] = React.useState(false);
-  const [viewStudent, setViewStudent] = React.useState(false)
   const [students, setStudents] = React.useState<Student[]>([]);
   React.useEffect(() => {
     getStudents().then((res) => {
@@ -103,22 +108,21 @@ const StudentPage = () => {
   const openModal = () => {
     setIsOpen(true);
   };
-
   // Form State
   const onSubmitForm = async () => {
     let data = {
       firstname: firstNameForm,
       lastname: lastNameForm,
+      gender: Gender,
       phone: phoneForm,
       address: addressForm,
       email: emailForm,
       password: passwordForm,
     } as StudentInput;
-    if (!firstNameForm || !lastNameForm || !emailForm) {
+    if (!firstNameForm || !lastNameForm ||!Gender || !emailForm) {
       alert("Please fill all the fields");
       return;
     }
-
     if (idForm) {
       const res = await updateStudent(idForm, data);
     } else {
@@ -128,16 +132,18 @@ const StudentPage = () => {
       }
       const res = await createStudent(data);
     }
-    const stdList = await getStudents();
-    setStudents(stdList);
+    const studentlist = await getStudents();
+    setStudents(studentlist);
     closeModal();
   };
-  const onShowEditForm = (r: Student) => {
+  const onShowEditForm = (r: CreateStudentInputDto) => {
     setFirstNameForm(r.firstname);
     setLastNameForm(r.lastname);
+    setGender(r.gender)
     setPhoneForm(r.phone || "");
     setAddressForm(r.address || "");
     setEmailForm(r.email);
+    setPasswordForm(r.password);
     setIdForm(r.id);
     openModal();
   };
@@ -145,14 +151,16 @@ const StudentPage = () => {
   const onSetAddNewForm = () => {
     setFirstNameForm("");
     setLastNameForm("");
+    setGender("");
     setPhoneForm("");
     setAddressForm("");
+    setPasswordForm("")
     setEmailForm("");
     setIdForm(0);
     openModal();
   };
-  const onDelete = async (r: Student) => {
-    const res = await deleteStudent(r.id);
+  const onDelete = async (r: number) => {
+    const res = await deleteStudent(r);
     const newStudents = students.filter((s) => s.id !== res.id);
     setStudents(newStudents);
   };
@@ -160,6 +168,7 @@ const StudentPage = () => {
   const [idForm, setIdForm] = React.useState<number>();
   const [firstNameForm, setFirstNameForm] = React.useState<string>("");
   const [lastNameForm, setLastNameForm] = React.useState<string>("");
+  const [Gender,setGender] = React.useState<string>("");
   const [phoneForm, setPhoneForm] = React.useState<string>("");
   const [addressForm, setAddressForm] = React.useState<string>("");
   const [emailForm, setEmailForm] = React.useState<string>("");
@@ -202,6 +211,7 @@ const StudentPage = () => {
                       onChange={(e) => setFirstNameForm(e.target.value)}
                     />
                   </div>
+                  
                   <div className="w-full md:w-1/2 px-3">
                     <label className="block uppercase tracking-wide text-gray-500 text-3 font-bold mb-2">
                       Last Name
@@ -212,6 +222,18 @@ const StudentPage = () => {
                       placeholder="Last Name"
                       value={lastNameForm}
                       onChange={(e) => setLastNameForm(e.target.value)}
+                    />
+                  </div>
+                  <div className="w-full md:w-1/2 px-3">
+                    <label className="block uppercase tracking-wide text-gray-500 text-3 font-bold mb-2">
+                      Gender
+                    </label>
+                    <input
+                      className="appearance-none block w-full bg-gray-100 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+                      type="text"
+                      placeholder="Gender"
+                      value={Gender}
+                      onChange={(e) => setGender(e.target.value)}
                     />
                   </div>
                 </div>
@@ -232,6 +254,7 @@ const StudentPage = () => {
                     />
                   </div>
                 </div>
+                
                 <div className="flex flex-wrap -mx-3 mb-3">
                   <div className="w-full px-3">
                     <label
@@ -249,7 +272,7 @@ const StudentPage = () => {
                     />
                   </div>
                 </div>
-                {!idForm ? (
+              
                   <div className="flex flex-wrap -mx-3 mb-3">
                     <div className="w-full px-3">
                       <label
@@ -267,7 +290,7 @@ const StudentPage = () => {
                       />
                     </div>
                   </div>
-                ) : null}
+                
                 <div className="flex flex-wrap -mx-3 mb-3">
                   <div className="w-full px-3">
                     <label
@@ -287,7 +310,7 @@ const StudentPage = () => {
                 </div>
               </div>
               <button
-                onClick={openModal}
+                onClick={onSubmitForm}
                 className="text-white bg-blue-500 hover:bg-blue-800 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center "
               >
                 Add

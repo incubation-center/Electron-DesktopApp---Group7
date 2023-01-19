@@ -58,12 +58,12 @@ const MenuBar = ({ children }: childrenProps) => {
         },
         ["student"].includes(userRole) && { title: "Rise Issues", path: "/riseissues", src: "issue" },
         ["admin"].includes(userRole) && {
-          title: "Faculty Salary",
+          title: "Expand record",
           path: "/facultysalary",
           src: "salary",
         },
         ["admin"].includes(userRole) && {
-          title: "Student Payment",
+          title: "Income record",
           path: "/studentpayment",
           src: "salary",
         },

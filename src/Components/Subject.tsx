@@ -57,7 +57,7 @@ function SubjectPage() {
               Edit
             </button>
             <button
-              onClick={() => onDeleteSubject(r.id)}
+              onClick={() => onDeleteSubject(r)}
               className="p-1 bg-red-400 rounded-md"
             >
               Delete
@@ -139,10 +139,13 @@ function SubjectPage() {
     setSubjects(res);
     closeModal();
   };
-  const onDeleteSubject = async (id: number) => {
-    await deleteSubjectById(id);
-    const newSubjects = subjects?.filter((v) => v.id != id);
-    setSubjects(newSubjects);
+  const onDeleteSubject = async (d: Subject) => {
+    const deletedSub = await deleteSubjectById(d.id);
+    if (!deletedSub) {
+      alert("Delete failed");
+      return;
+    }
+    setSubjects((prev) => prev?.filter((s) => s.id != deletedSub.id));
   };
 
   const onSetAddFormSubject = () => {
@@ -287,7 +290,7 @@ function SubjectPage() {
           {/* ....... end content ....... */}
         </div>
       </Modal>
-      <TableCustom data={subjects} columns={columnTable} />
+      <TableCustom data={subjects} columns={columnTable} rowKey="id" />
     </div>
   );
 }
