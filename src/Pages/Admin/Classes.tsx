@@ -17,8 +17,8 @@ const Classespage = () => {
       width: 200,
     },
     {
-      title: "Section",
-      dataIndex: "section",
+      title: "Description",
+      dataIndex: "description",
       key: "section",
       width: 200,
     },
@@ -64,12 +64,9 @@ const Classespage = () => {
     openModal();
   };
   const ondeletClass = async (id: number) => {
-    const res = await deleteClassByid(id);
-    if (classs && res) {
-      const index = classs.findIndex((r) => r.id === id);
-      classs.splice(index, 1);
-      setClasses([...classs]);
-    }
+    await deleteClassByid(id);
+    const newClasses = classs.filter((r) => r.id != id);
+    setClasses(newClasses);
   };
 
   const onAddClass = async () => {
@@ -92,7 +89,7 @@ const Classespage = () => {
     closeModal();
   };
 
-  const [classs, setClasses] = useState<Class[]>();
+  const [classs, setClasses] = useState<Class[]>([]);
   //   open and close the modal
   const [modalIsOpen, setIsOpen] = useState(false);
   //   form state

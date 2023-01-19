@@ -13,28 +13,22 @@ import Modal from "react-modal";
  */
 const columns = [
   {
-    title: "id",
+    title: "ID",
     dataIndex: "id",
     key: "id",
     width: 200,
   },
   {
-    title: "date",
+    title: "Date",
     dataIndex: "date",
     key: "date",
-    width: 150,
+    width: 250,
   },
   {
-    title: "name",
-    dataIndex: "name",
+    title: "Subject",
+    dataIndex: "subject",
     key: "name",
-    width: 150,
-  },
-  {
-    title: "Operations",
-    dataIndex: "",
-    key: "operations",
-    render: () => <a href="#">Delete</a>,
+    width: 200,
   },
 ];
 
@@ -65,14 +59,14 @@ function ExamPage() {
   return (
     <div className="p-10">
       <div className="text-3xl text-center font-bold mb-5">Examination</div>
-      <div className="flex justify-between mb-4">
+      {/* <div className="flex justify-between mb-4">
         <button
           className="bg-sky-400 px-2 py-2 rounded-md hover:bg-sky-300 hover:text-white"
           onClick={openModal}
         >
           + Add Exam
         </button>
-      </div>
+      </div> */}
       <Modal
         isOpen={modalIsOpen}
         onRequestClose={closeModal}

@@ -60,7 +60,7 @@ const Studentresult = () => {
           onClick={openModal}
           className="bg-sky-400 py-1 px-4 rounded-lg m-4"
         >
-          Add
+          + Add
         </button>
       </div>
       <Modal

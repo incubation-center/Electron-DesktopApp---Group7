@@ -66,12 +66,12 @@ const StudentPage = () => {
       width: 300,
       render: (r: CreateStudentInputDto) => (
         <div className="space-x-2 flex justify-center">
-          <button
+          {/* <button
             onClick={() => onShowEditForm(r)} // '/student-info?id=1293'
             className="p-1 bg-green-400 hover:bg-green-300 duration-500 rounded-md"
           >
             View
-          </button>
+          </button> */}
           <button
             onClick={() => onShowEditForm(r)}
             className="p-1 bg-blue-400 hover:bg-blue-300 duration-500 rounded-md"
