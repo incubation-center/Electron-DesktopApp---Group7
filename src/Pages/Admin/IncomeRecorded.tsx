@@ -2,7 +2,7 @@ import TableCustom from "@/Components/TableCustom";
 import { useState, useEffect } from "react";
 import { getAllExpense } from "@/services/expense";
 import { Payment } from "@/types";
-import moment from "moment";
+// import moment from "moment";
 import { createPayments, getAllPayments } from "@/services/payments";
 import Modal from "react-modal";
 const columns = [

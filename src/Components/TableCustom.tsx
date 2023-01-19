@@ -30,12 +30,14 @@ const TableCustom = ({
 }: {
   data: readonly DefaultRecordType[] | undefined;
   columns: ColumnsType<ColumnGroupType<any> | ColumnType<any>> | undefined;
+  
 }) => {
   return (
     <Table
       onHeaderRow={onHeaderRow}
       columns={columns}
       data={data}
+      rowKey=""
       rowClassName={bgRowColor}
     />
   );

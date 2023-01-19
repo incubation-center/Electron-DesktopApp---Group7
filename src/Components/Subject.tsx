@@ -290,7 +290,9 @@ function SubjectPage() {
           {/* ....... end content ....... */}
         </div>
       </Modal>
-      <TableCustom data={subjects} columns={columnTable} rowKey="id" />
+      <TableCustom data={subjects} columns={columnTable} 
+      // rowKey="id"
+       />
     </div>
   );
 }

@@ -5,7 +5,7 @@ import {
   createTeacher,
   deleteTeacherByid,
 } from "@/services/teacher";
-import { Teacher } from "@/types";
+import { CreateTeacherInputDto, Teacher, TeacherInput } from "@/types";
 import { useEffect, useState } from "react";
 import Modal from "react-modal";
 
@@ -51,7 +51,7 @@ const TeachersPage = () => {
       title: "Operations",
       dataIndex: "",
       key: "operations",
-      render: (r: Teacher) => (
+      render: (r: TeacherInput) => (
         <div className="space-x-2">
           <button
             // onClick={() => onSetFormSubject(r)}
@@ -60,8 +60,7 @@ const TeachersPage = () => {
             Edit
           </button>
           <button
-            onClick={() => ondelteTeacher(r)}
-            // onClick={() => onDeleteSubject(r.id)}
+            onClick={() => ondelteTeacher(r.id)}
             className="p-1 bg-red-400 rounded-md"
           >
             Delete
@@ -101,8 +100,8 @@ const TeachersPage = () => {
       password: passwordform,
       phone: phoneform,
       address: addressform,
-    } as unknown as Teacher;
-    if (!firstNameForm || !lastNameForm || emailform) {
+    } as TeacherInput;
+    if (!firstNameForm || !lastNameForm ||!Gender || emailform) {
       alert("Please fill all credentail and recheck !!!");
       return;
     }
@@ -123,6 +122,7 @@ const TeachersPage = () => {
   const onAddteacher = async () => {
     setFirstNameForm("");
     setLastNameForm("");
+    setPasswordForm("")
     setGender("")
     setPhoneform("");
     setEmailform("");
@@ -133,6 +133,7 @@ const TeachersPage = () => {
   const oneditTeacher = async (d: Teacher) => {
     setFirstNameForm(d.firstname);
     setLastNameForm(d.lastname);
+    setPasswordForm(d.password)
     setGender(d.gender);
     setPhoneform(d.phone || "");
     setEmailform(d.email);
@@ -141,8 +142,8 @@ const TeachersPage = () => {
     openModal();
   };
 
-  const ondelteTeacher = async (d: Teacher) => {
-    const res = await deleteTeacherByid(d.id);
+  const ondelteTeacher = async (d: number) => {
+    const res = await deleteTeacherByid(d);
     const newTeacher = teachers.filter((t) => t.id !== res.id );
     SetTeacher(newTeacher)
   };

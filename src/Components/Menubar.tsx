@@ -20,7 +20,7 @@ const MenuBar = ({ children }: childrenProps) => {
           path: "/subjects",
           src: "subject",
         },
-        ["admin", "teacher"].includes(userRole) && {
+        ["admin"].includes(userRole) && {
           title: "Students",
           path: "/students",
           src: "student",
@@ -37,7 +37,7 @@ const MenuBar = ({ children }: childrenProps) => {
           src: "teacher",
         },
         ["admin"].includes(userRole) && {
-          title: "Courses",
+          title: "Class",
           path: "/class",
           src: "course",
         },
@@ -51,11 +51,11 @@ const MenuBar = ({ children }: childrenProps) => {
           path: "/schedule",
           src: "salary",
         },
-        ["teacher", "student"].includes(userRole) && {
-          title: "Attendance student",
-          path: "/attendances",
-          src: "Attendence",
-        },
+        // ["student"].includes(userRole) && {
+        //   title: "Attendance student",
+        //   path: "/attendances",
+        //   src: "Attendence",
+        // },
         ["student"].includes(userRole) && {
           title: "Rise Issues",
           path: "/riseissues",

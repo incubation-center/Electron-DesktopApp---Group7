@@ -157,7 +157,26 @@ export type Teacher = {
   userId: number;
   schoolId: number;
 };
+export interface CreateTeacherInputDto {
+  [x: string]: number;
+  firstname: string;
+  lastname: string;
+  email: string;
+  gender: GenderEnumType;
+  phone: string;
+  address: string;
+  password: string;
+}
 
+export interface TeacherInput {
+  [x: string]: SetStateAction<string>;
+  firstname: string;
+  lastname: string;
+  email: string;
+  phone: string;
+  address: string;
+  password: string;
+}
 /**
  * Model Class
  *
